@@ -8,12 +8,12 @@ import tensorflow.contrib.layers as layers
 
 #ENV = "CartPole-v0"
 
-MEMORY_SIZE = 10000
-EPISODES = 500
-MAX_STEP = 500
-BATCH_SIZE = 32
-UPDATE_PERIOD = 200  # update target network parameters
-
+#MEMORY_SIZE = 10000
+#EPISODES = 500
+#MAX_STEP = 500
+#BATCH_SIZE = 32
+#UPDATE_PERIOD = 200  # update target network parameters
+Lay_num = 100
 
 ##built class for the DQN
 class DeepQNetwork():
@@ -43,12 +43,12 @@ class DeepQNetwork():
         # q_network
         self.inputs_q = tf.placeholder(dtype=tf.float32, shape=[None, self.state_dim], name="inputs_q")
         scope_var = "q_network"
-        self.q_value = self.net_frame([64], self.inputs_q, self.action_dim, scope_var, reuse=True)
+        self.q_value = self.net_frame([Lay_num], self.inputs_q, self.action_dim, scope_var, reuse=True)
 
         # target_network
         self.inputs_target = tf.placeholder(dtype=tf.float32, shape=[None, self.state_dim], name="inputs_target")
         scope_tar = "target_network"
-        self.q_target = self.net_frame([64], self.inputs_target, self.action_dim, scope_tar)
+        self.q_target = self.net_frame([Lay_num], self.inputs_target, self.action_dim, scope_tar)
 
         with tf.variable_scope("loss"):
             self.action = tf.placeholder(dtype=tf.int32, shape=[None], name="action")
@@ -63,11 +63,11 @@ class DeepQNetwork():
             self.train_op = optimizer.minimize(self.loss)
 
             # training
-    def train(self, state, reward, action, state_next, done):
+    def train(self, state, reward, action, state_next):
         q, q_target = self.sess.run([self.q_value, self.q_target],
                                     feed_dict={self.inputs_q: state, self.inputs_target: state_next})
         q_target_best = np.max(q_target, axis=1)
-        q_target_best_mask = (1.0 - done) * q_target_best
+        q_target_best_mask =  q_target_best
 
         target = reward + self.gamma * q_target_best_mask
 
@@ -92,7 +92,7 @@ class DeepQNetwork():
         q_prmts = tf.get_collection(tf.GraphKeys.GLOBAL_VARIABLES, "q_network")
         target_prmts = tf.get_collection(tf.GraphKeys.GLOBAL_VARIABLES, "target_network")
         self.sess.run([tf.assign(t, q) for t, q in zip(target_prmts, q_prmts)])  # ***
-        print("updating target-network parmeters...")
+        #print("updating target-network parmeters...")
 
     def decay_epsilon(self):
         if self.epsilon > 0.03:
