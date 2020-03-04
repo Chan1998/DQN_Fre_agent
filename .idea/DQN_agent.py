@@ -6,6 +6,7 @@ import collections
 import random
 import tensorflow.contrib.layers as layers
 
+
 #ENV = "CartPole-v0"
 
 #MEMORY_SIZE = 10000
@@ -13,17 +14,17 @@ import tensorflow.contrib.layers as layers
 #MAX_STEP = 500
 #BATCH_SIZE = 32
 #UPDATE_PERIOD = 200  # update target network parameters
-Lay_num = 100
+lay_num = 100
 
 ##built class for the DQN
 class DeepQNetwork():
-    def __init__(self, env, sess=None, gamma=0.8, epsilon=0.8):
+    def __init__(self, env,n,m,k, sess=None, gamma=0.8, epsilon=0.8):
         self.gamma = gamma
         self.epsilon = epsilon
         #self.action_dim = env.action_space.n
         #self.state_dim = env.observation_space.shape[0]
-        self.action_dim = env.Action_space_num
-        self.state_dim = env.Observation_space_num
+        self.action_dim = k
+        self.state_dim = n*m*k
         self.network()
         self.sess = sess
         self.sess.run(tf.global_variables_initializer())
@@ -43,12 +44,12 @@ class DeepQNetwork():
         # q_network
         self.inputs_q = tf.placeholder(dtype=tf.float32, shape=[None, self.state_dim], name="inputs_q")
         scope_var = "q_network"
-        self.q_value = self.net_frame([Lay_num], self.inputs_q, self.action_dim, scope_var, reuse=True)
+        self.q_value = self.net_frame([lay_num], self.inputs_q, self.action_dim, scope_var, reuse=True)
 
         # target_network
         self.inputs_target = tf.placeholder(dtype=tf.float32, shape=[None, self.state_dim], name="inputs_target")
         scope_tar = "target_network"
-        self.q_target = self.net_frame([Lay_num], self.inputs_target, self.action_dim, scope_tar)
+        self.q_target = self.net_frame([lay_num], self.inputs_target, self.action_dim, scope_tar)
 
         with tf.variable_scope("loss"):
             self.action = tf.placeholder(dtype=tf.int32, shape=[None], name="action")
