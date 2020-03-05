@@ -14,7 +14,7 @@ import tensorflow.contrib.layers as layers
 #MAX_STEP = 500
 #BATCH_SIZE = 32
 #UPDATE_PERIOD = 200  # update target network parameters
-lay_num = 100
+lay_num = 200
 
 ##built class for the DQN
 class DeepQNetwork():

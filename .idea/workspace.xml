@@ -2,9 +2,327 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5e623a55-375f-459a-a13e-d1a9cb6b61f1" name="默认" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/100F.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1582949993.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1582953417.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1582953662.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1582953718.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1582953886.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1582954012.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1582954215.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1582954217.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1582954263.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1582954304.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1582954475.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1582954569.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1582954867.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1582954896.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1582955544.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1582955661.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1582955695.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1582955749.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1582955813.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1582955843.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1582955985.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1582958202.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1582958287.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1582958516.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1582959186.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1582959248.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1582959329.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1582962382.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1582962441.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1582962525.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1582962585.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1582962684.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1582962759.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583045018.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583045083.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583045354.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583045447.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583045590.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583045698.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583045837.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583045893.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583046320.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583046426.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583046480.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583046682.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583046823.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583046904.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583046975.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583047088.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583047137.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583047147.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583047206.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583047259.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583047410.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583047450.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583047492.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583047538.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583047583.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583047619.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583047669.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583047717.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583047872.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583048904.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583048944.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583049065.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583049232.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583049302.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583049504.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583049923.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583050229.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583295005.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583295777.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583295835.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583295873.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583296000.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583296702.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583296703.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583296759.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583296799.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583296841.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583297012.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583298222.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583299263.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583299300.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583299368.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583299390.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583303297.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583303333.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583303478.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583303827.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583304068.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583304328.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583304330.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583304515.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583304517.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583304670.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583304671.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583304792.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583304793.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583305020.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583305042.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583305043.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583305153.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583305155.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583305284.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583305286.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583305591.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583305621.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583305623.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583305730.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583305731.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583305989.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583305990.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583305991.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306042.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306043.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306044.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306045.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306046.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306109.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306110.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306171.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306172.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306335.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306336.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306339.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306340.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306428.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306429.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306430.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306431.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306432.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306433.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306434.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306435.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306436.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306437.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306438.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306439.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306440.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306441.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306442.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306443.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306444.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306445.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306446.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306447.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306448.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306449.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306450.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306451.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306452.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306453.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306454.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306455.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306456.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306457.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306458.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306459.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306460.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306461.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306462.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306463.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306464.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306465.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306466.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306467.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306468.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306469.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306470.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306471.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306472.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306473.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306474.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306475.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306476.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306477.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306478.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306479.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306480.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306481.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306482.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306483.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306484.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306485.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306486.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306544.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306545.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306546.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306548.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306549.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306551.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306552.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306554.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306556.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306558.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306560.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306562.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306564.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306567.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306569.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306572.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306575.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306579.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306582.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306585.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306589.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306593.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306596.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306600.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306604.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306608.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306613.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306618.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306622.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306627.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306768.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306770.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306771.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306773.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306776.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306778.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306781.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306784.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306788.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306792.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306796.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306801.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306806.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306810.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306816.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306823.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306829.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306836.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306843.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306851.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306859.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306867.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306876.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306884.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306894.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306903.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306914.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306924.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306935.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306947.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306958.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306970.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306984.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583306997.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583307010.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583307025.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583307040.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583307055.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583307072.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583307089.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583307105.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583307122.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583307139.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583307158.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583307177.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583307197.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583307216.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583307234.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583307258.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583307279.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583307302.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583307326.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583307352.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583307374.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583307400.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583307425.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583307451.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583307477.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583307507.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583307537.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583307562.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583307593.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583307621.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583307648.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583307675.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583307705.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583307734.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583307765.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583307799.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583307833.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583307867.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583307905.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583307942.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583307979.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583308018.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583308060.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583308098.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583308139.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583308182.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583308223.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583308267.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583308307.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583308342.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583308387.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583308436.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583308479.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583308528.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583308575.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583308619.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583308669.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583308717.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583308768.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583308820.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583308875.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583308922.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583308974.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583309030.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583309084.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583309142.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1583309204.DESKTOP-ALU59QM" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/DQN_Fre_Main.py" afterPath="$PROJECT_DIR$/.idea/DQN_Fre_Main.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/DQN_agent.py" afterPath="$PROJECT_DIR$/.idea/DQN_agent.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/Fre_env.py" afterPath="$PROJECT_DIR$/.idea/Fre_env.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -17,7 +335,7 @@
     <SUITE FILE_PATH="coverage/DQN_agent_Fre$DQN_agent.coverage" NAME="DQN_agent Coverage Results" MODIFIED="1582957364986" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/.idea" />
     <SUITE FILE_PATH="coverage/DQN_agent_Fre$Other_method.coverage" NAME="Other_method Coverage Results" MODIFIED="1583303197750" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/.idea" />
     <SUITE FILE_PATH="coverage/DQN_agent_Fre$Fre_env.coverage" NAME="Fre_env Coverage Results" MODIFIED="1583044258402" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/.idea" />
-    <SUITE FILE_PATH="coverage/DQN_agent_Fre$DQN_Fre_Main.coverage" NAME="DQN_Fre_Main Coverage Results" MODIFIED="1583306761626" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/.idea" />
+    <SUITE FILE_PATH="coverage/DQN_agent_Fre$DQN_Fre_Main.coverage" NAME="DQN_Fre_Main Coverage Results" MODIFIED="1583395371653" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/.idea" />
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
@@ -25,10 +343,17 @@
       <file leaf-file-name="DQN_Fre_Main.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/.idea/DQN_Fre_Main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1955">
-              <caret line="106" column="1" lean-forward="false" selection-start-line="106" selection-start-column="1" selection-end-line="106" selection-end-column="1" />
+            <state relative-caret-position="616">
+              <caret line="342" column="4" lean-forward="false" selection-start-line="342" selection-start-column="4" selection-end-line="342" selection-end-column="4" />
               <folding>
-                <element signature="e#0#21#0" expanded="true" />
+                <element signature="e#375#406#0" expanded="false" />
+                <element signature="e#1320#3714#1" expanded="false" />
+                <element signature="e#3720#6146#1" expanded="false" />
+                <element signature="e#6152#8627#1" expanded="false" />
+                <element signature="e#8632#9137#1" expanded="false" />
+                <element signature="e#9142#9659#1" expanded="false" />
+                <marker date="1583395371636" expanded="false" signature="4449:5934" ph="..." />
+                <marker date="1583395371636" expanded="false" signature="6899:8384" ph="..." />
               </folding>
             </state>
           </provider>
@@ -37,14 +362,13 @@
       <file leaf-file-name="Fre_env.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/.idea/Fre_env.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="149">
-              <caret line="62" column="34" lean-forward="false" selection-start-line="62" selection-start-column="34" selection-end-line="62" selection-end-column="34" />
+            <state relative-caret-position="525">
+              <caret line="41" column="17" lean-forward="false" selection-start-line="41" selection-start-column="17" selection-end-line="41" selection-end-column="17" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
                 <element signature="e#254#416#0" expanded="false" />
-                <element signature="e#528#1358#0" expanded="false" />
-                <element signature="e#1428#1582#0" expanded="false" />
-                <element signature="e#1639#1925#0" expanded="false" />
+                <element signature="e#1489#1643#0" expanded="false" />
+                <element signature="e#1700#1986#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -53,7 +377,7 @@
       <file leaf-file-name="Other_method.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/.idea/Other_method.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="632">
+            <state relative-caret-position="2507">
               <caret line="309" column="3" lean-forward="false" selection-start-line="309" selection-start-column="3" selection-end-line="309" selection-end-column="3" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
@@ -75,8 +399,8 @@
       <file leaf-file-name="DQN_agent.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/.idea/DQN_agent.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="295">
-              <caret line="26" column="21" lean-forward="false" selection-start-line="26" selection-start-column="21" selection-end-line="26" selection-end-column="21" />
+            <state relative-caret-position="368">
+              <caret line="16" column="11" lean-forward="false" selection-start-line="16" selection-start-column="11" selection-end-line="16" selection-end-column="11" />
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
               </folding>
@@ -100,8 +424,8 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/.idea/Fre_env.py" />
         <option value="$PROJECT_DIR$/.idea/Other_method.py" />
+        <option value="$PROJECT_DIR$/.idea/Fre_env.py" />
         <option value="$PROJECT_DIR$/.idea/DQN_agent.py" />
         <option value="$PROJECT_DIR$/.idea/DQN_Fre_Main.py" />
       </list>
@@ -416,10 +740,10 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="运行" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18441273" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="运行" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18441273" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296875" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -453,10 +777,77 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/.idea/DQN_Fre_Main.py">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#375#406#0" expanded="false" />
+            <element signature="e#1320#3714#1" expanded="false" />
+            <element signature="e#3720#6146#1" expanded="false" />
+            <element signature="e#6152#8627#1" expanded="false" />
+            <element signature="e#8632#9137#1" expanded="false" />
+            <element signature="e#9142#9659#1" expanded="false" />
+            <marker date="1583395371636" expanded="false" signature="4449:5934" ph="..." />
+            <marker date="1583395371636" expanded="false" signature="6899:8384" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/Fre_env.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="644">
+          <caret line="62" column="34" lean-forward="false" selection-start-line="62" selection-start-column="34" selection-end-line="62" selection-end-column="34" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+            <element signature="e#254#416#0" expanded="false" />
+            <element signature="e#1489#1643#0" expanded="false" />
+            <element signature="e#1700#1986#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/Other_method.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2783">
+          <caret line="309" column="3" lean-forward="false" selection-start-line="309" selection-start-column="3" selection-end-line="309" selection-end-column="3" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+            <element signature="e#244#406#0" expanded="false" />
+            <element signature="e#455#705#0" expanded="false" />
+            <element signature="e#764#1041#0" expanded="false" />
+            <element signature="e#1113#2054#0" expanded="false" />
+            <element signature="e#2125#4071#0" expanded="false" />
+            <element signature="e#4153#7151#0" expanded="false" />
+            <element signature="e#7208#7458#0" expanded="false" />
+            <element signature="e#7527#7681#0" expanded="false" />
+            <element signature="e#7728#8617#0" expanded="false" />
+            <element signature="e#8618#9085#1" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/DQN_agent.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="460">
+          <caret line="26" column="21" lean-forward="false" selection-start-line="26" selection-start-column="21" selection-end-line="26" selection-end-column="21" />
+          <folding>
+            <element signature="e#0#23#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/DQN_Fre_Main.py">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1633">
           <caret line="76" column="12" lean-forward="false" selection-start-line="76" selection-start-column="12" selection-end-line="76" selection-end-column="12" />
           <folding>
-            <element signature="e#0#21#0" expanded="true" />
+            <element signature="e#375#406#0" expanded="false" />
+            <element signature="e#1320#3714#1" expanded="false" />
+            <element signature="e#3720#6146#1" expanded="false" />
+            <element signature="e#6152#8627#1" expanded="false" />
+            <element signature="e#8632#9137#1" expanded="false" />
+            <element signature="e#9142#9659#1" expanded="false" />
+            <marker date="1583395371636" expanded="false" signature="4449:5934" ph="..." />
+            <marker date="1583395371636" expanded="false" signature="6899:8384" ph="..." />
           </folding>
         </state>
       </provider>
@@ -478,9 +869,8 @@
           <folding>
             <element signature="e#0#18#0" expanded="true" />
             <element signature="e#254#416#0" expanded="false" />
-            <element signature="e#528#1358#0" expanded="false" />
-            <element signature="e#1428#1582#0" expanded="false" />
-            <element signature="e#1639#1925#0" expanded="false" />
+            <element signature="e#1489#1643#0" expanded="false" />
+            <element signature="e#1700#1986#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -490,7 +880,14 @@
         <state relative-caret-position="0">
           <caret line="0" column="21" lean-forward="false" selection-start-line="0" selection-start-column="21" selection-end-line="0" selection-end-column="21" />
           <folding>
-            <element signature="e#0#21#0" expanded="true" />
+            <element signature="e#375#406#0" expanded="false" />
+            <element signature="e#1320#3714#1" expanded="false" />
+            <element signature="e#3720#6146#1" expanded="false" />
+            <element signature="e#6152#8627#1" expanded="false" />
+            <element signature="e#8632#9137#1" expanded="false" />
+            <element signature="e#9142#9659#1" expanded="false" />
+            <marker date="1583395371636" expanded="false" signature="4449:5934" ph="..." />
+            <marker date="1583395371636" expanded="false" signature="6899:8384" ph="..." />
           </folding>
         </state>
       </provider>
@@ -512,9 +909,8 @@
           <folding>
             <element signature="e#0#18#0" expanded="true" />
             <element signature="e#254#416#0" expanded="false" />
-            <element signature="e#528#1358#0" expanded="false" />
-            <element signature="e#1428#1582#0" expanded="false" />
-            <element signature="e#1639#1925#0" expanded="false" />
+            <element signature="e#1489#1643#0" expanded="false" />
+            <element signature="e#1700#1986#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -523,7 +919,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1134">
           <caret line="974" column="0" lean-forward="false" selection-start-line="974" selection-start-column="0" selection-end-line="974" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -531,13 +926,26 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="237">
           <caret line="17" column="0" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://F:/anaconda/envs/tensorflow1/Lib/site-packages/tensorflow/python/framework/op_def_library.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="343">
+          <caret line="766" column="0" lean-forward="false" selection-start-line="766" selection-start-column="0" selection-end-line="766" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://F:/anaconda/envs/tensorflow1/Lib/site-packages/tensorflow/contrib/framework/python/ops/arg_scope.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="237">
+          <caret line="180" column="0" lean-forward="false" selection-start-line="180" selection-start-column="0" selection-end-line="180" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/.idea/Other_method.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="632">
+        <state relative-caret-position="2507">
           <caret line="309" column="3" lean-forward="false" selection-start-line="309" selection-start-column="3" selection-end-line="309" selection-end-column="3" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
@@ -555,52 +963,42 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://F:/anaconda/envs/tensorflow1/Lib/site-packages/tensorflow/python/framework/op_def_library.py">
+    <entry file="file://$PROJECT_DIR$/.idea/Fre_env.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="343">
-          <caret line="766" column="0" lean-forward="false" selection-start-line="766" selection-start-column="0" selection-end-line="766" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://F:/anaconda/envs/tensorflow1/Lib/site-packages/tensorflow/contrib/framework/python/ops/arg_scope.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="237">
-          <caret line="180" column="0" lean-forward="false" selection-start-line="180" selection-start-column="0" selection-end-line="180" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="525">
+          <caret line="41" column="17" lean-forward="false" selection-start-line="41" selection-start-column="17" selection-end-line="41" selection-end-column="17" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+            <element signature="e#254#416#0" expanded="false" />
+            <element signature="e#1489#1643#0" expanded="false" />
+            <element signature="e#1700#1986#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/.idea/DQN_agent.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="295">
-          <caret line="26" column="21" lean-forward="false" selection-start-line="26" selection-start-column="21" selection-end-line="26" selection-end-column="21" />
+        <state relative-caret-position="368">
+          <caret line="16" column="11" lean-forward="false" selection-start-line="16" selection-start-column="11" selection-end-line="16" selection-end-column="11" />
           <folding>
             <element signature="e#0#23#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.idea/Fre_env.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="149">
-          <caret line="62" column="34" lean-forward="false" selection-start-line="62" selection-start-column="34" selection-end-line="62" selection-end-column="34" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-            <element signature="e#254#416#0" expanded="false" />
-            <element signature="e#528#1358#0" expanded="false" />
-            <element signature="e#1428#1582#0" expanded="false" />
-            <element signature="e#1639#1925#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.idea/DQN_Fre_Main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1955">
-          <caret line="106" column="1" lean-forward="false" selection-start-line="106" selection-start-column="1" selection-end-line="106" selection-end-column="1" />
+        <state relative-caret-position="616">
+          <caret line="342" column="4" lean-forward="false" selection-start-line="342" selection-start-column="4" selection-end-line="342" selection-end-column="4" />
           <folding>
-            <element signature="e#0#21#0" expanded="true" />
+            <element signature="e#375#406#0" expanded="false" />
+            <element signature="e#1320#3714#1" expanded="false" />
+            <element signature="e#3720#6146#1" expanded="false" />
+            <element signature="e#6152#8627#1" expanded="false" />
+            <element signature="e#8632#9137#1" expanded="false" />
+            <element signature="e#9142#9659#1" expanded="false" />
+            <marker date="1583395371636" expanded="false" signature="4449:5934" ph="..." />
+            <marker date="1583395371636" expanded="false" signature="6899:8384" ph="..." />
           </folding>
         </state>
       </provider>

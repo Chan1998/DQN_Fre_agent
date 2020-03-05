@@ -19,12 +19,12 @@ def Location_matrix_df(n,m,k):
 
 #定义DQN分配矩阵
 def DQN_Allocation_add(reward_all,Location_matrix,DQN_Allocation_matrix,action,arg_num,n,m,k):
-    #DQN_Allocation_matrix = np.zeros(shape=(n,m,k),dtype=int)
     n1 = int(arg_num)
     k1 = int(action)
+    #DQN_Allocation_matrix[n1,:,:] = 0
     flag = 0
     for l in range(m):
-        if np.all(Location_matrix[n1, l, 0]) == 1:
+        if (np.all(Location_matrix[n1, l, 0]) == 1) and (np.all(DQN_Allocation_matrix[n1,l,:] == 0 )):
             for j in range(n):
                 flag = flag + DQN_Allocation_matrix[j, l, k1]  # 观察x号频段是否有人使用
             if flag == 0:
@@ -38,6 +38,9 @@ def DQN_Allocation_add(reward_all,Location_matrix,DQN_Allocation_matrix,action,a
                 #print("对于基站%d范围内%d号用户,频段 %d 已被占用" % (l, n1, k1))
                 #print("基站%d范围内%d号用户,随机分配失败" % (l,n1))
                 r = 0
+        else:
+            r = 0
+
     return DQN_Allocation_matrix,r
 
 
