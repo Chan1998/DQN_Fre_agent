@@ -31,7 +31,7 @@ UPDATE_PERIOD = 10  # update target network parameters目标网络随训练步�
 #Transition = collections.namedtuple("Transition", ["state", "action", "reward", "next_state"])
 
 
-T = 50      #测试维度
+T = 8      #测试维度
 
 #主函数
 if __name__ == "__main__":
@@ -265,14 +265,14 @@ if __name__ == "__main__":
     plt.show()
     '''
 
-    #少频率选择（动作空间）下用户敏感性分析
+    #少频率选择（动作空间）下频点敏感性分析
 
     N = 100
     Apply_num = N
-    K = 5
+    M = 20
 
-    for m in range(T):
-        M = m + 1
+    for k in range(T):
+        K = k + 1
 
         tf.reset_default_graph()
         memory = []
@@ -324,23 +324,23 @@ if __name__ == "__main__":
                 state = next_state
             r4 = reward_all
             # print(r4)
-            r43[m] = r4
+            r41[k] = r4
         r1, r2, r3 = Oth.run_process(N, M, K, Location_matrix)
-        r13[m] = r1
-        r23[m] = r2
-        r33[m] = r3
+        r11[k] = r1
+        r21[k] = r2
+        r31[k] = r3
         print(r1,r2,r3,r4)
 
     k = np.arange(1, T + 1)
-    plt.plot(k, np.log(r13 + 1e-5), color='r', linestyle=':', marker=None, label='random')
-    plt.plot(k, np.log(r23 + 1e-5), color='c', linestyle='-.', marker=None, label='Greedy')
-    plt.plot(k, np.log(r33 + 1e-5), color='y', linestyle='-', marker=None, label='Ep_Greedy')
-    plt.plot(k, np.log(r43 + 1e-5), color='b', linestyle='-', marker=None, label='DQN')
+    plt.plot(k, np.log(r11 + 1e-5), color='r', linestyle=':', marker=None, label='random')
+    plt.plot(k, np.log(r21 + 1e-5), color='c', linestyle='-.', marker=None, label='Greedy')
+    plt.plot(k, np.log(r31 + 1e-5), color='y', linestyle='-', marker=None, label='Ep_Greedy')
+    plt.plot(k, np.log(r41 + 1e-5), color='b', linestyle='-', marker=None, label='DQN')
     plt.legend()
-    plt.xlabel("Base_Num")
+    plt.xlabel("Frequence_Num")
     plt.ylabel("H")
-    plt.title("Base_number_influence")
-    plt.savefig("50B,less_Fre,N100,K5")
+    plt.title("Frequence_number_influence")
+    #plt.savefig("8F,less_Fre,N100,M20(5)")
 
     plt.show()
 

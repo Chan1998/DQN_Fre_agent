@@ -64,6 +64,7 @@ class DeepQNetwork():
             self.train_op = optimizer.minimize(self.loss)
 
             # training
+
     def train(self, state, reward, action, state_next):
         q, q_target = self.sess.run([self.q_value, self.q_target],
                                     feed_dict={self.inputs_q: state, self.inputs_target: state_next})
