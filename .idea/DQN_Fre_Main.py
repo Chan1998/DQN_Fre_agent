@@ -9,10 +9,10 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 #智能体变量
-MEMORY_SIZE = 100
+MEMORY_SIZE = 60
 EPISODES = 1            #不同用户分布情况下重复
 MAX_STEP = 100
-BATCH_SIZE = 20        #单次训练量大小
+BATCH_SIZE = 10        #单次训练量大小
 UPDATE_PERIOD = 10  # update target network parameters目标网络随训练步数更新周期
 Lay_num_list = [4096, 2048, 1024, 512, 256, 128, 64, 32, 16]
 #Lay_num = 100           #隐藏层层数
@@ -30,13 +30,13 @@ Lay_num_list = [4096, 2048, 1024, 512, 256, 128, 64, 32, 16]
 #T = 20          #测试维度
 
 #T = 20     #隐藏层测试维度
-T = 50
+T = 7
 
 #主函数
 if __name__ == "__main__":
 
     # 用户敏感性实验(少频率)
-
+    '''
     r12 = np.zeros(shape=(T), dtype=float)
     r22 = np.zeros(shape=(T), dtype=float)
     r32 = np.zeros(shape=(T), dtype=float)
@@ -53,7 +53,7 @@ if __name__ == "__main__":
         Transition = collections.namedtuple("Transition", ["state", "action", "reward", "next_state"])
         with tf.Session() as sess:
             # DQN智能体
-            DQN = DQN_agent.DeepQNetwork(env, N, M, K, Lay_num_list, sess)
+            DQN = DQN_agent.DeepQNetwork(env, N, M, K, Lay_num_list,1, sess)        #Double_DQN = 1
             update_iter = 0
             step_his = []
             # for episode in range(EPISODES):            #这里取消循环，后面如果加上别忘了缩进
@@ -114,7 +114,7 @@ if __name__ == "__main__":
     plt.title("Apply_number_influence")
     plt.show()
     plt.savefig("40-90N,5k,20M,多隐藏层")
-
+    '''
 
 
     # 基站敏感性实验(少频点)
@@ -135,7 +135,7 @@ if __name__ == "__main__":
         Transition = collections.namedtuple("Transition", ["state", "action", "reward", "next_state"])
         with tf.Session() as sess:
             # DQN智能体
-            DQN = DQN_agent.DeepQNetwork(env, N, M, K, sess)
+            DQN = DQN_agent.DeepQNetwork(env, N, M, K, Lay_num_list,1, sess)        #Double_DQN = 1
             update_iter = 0
             step_his = []
             # for episode in range(EPISODES):            #这里取消循环，后面如果加上别忘了缩进
@@ -207,16 +207,16 @@ if __name__ == "__main__":
     
     N = 100
     Apply_num = N
-    M = 3
+    M = 20
 
     for k in range(T):
-        K = k + 1 
+        K = k + 2
         tf.reset_default_graph()
         memory = []
         Transition = collections.namedtuple("Transition", ["state", "action", "reward", "next_state"])
         with tf.Session() as sess:
             # DQN智能体
-            DQN = DQN_agent.DeepQNetwork(env, N, M, K, Lay_num_list, sess)
+            DQN = DQN_agent.DeepQNetwork(env, N, M, K, Lay_num_list,1, sess)        #Double_DQN = 1
             update_iter = 0
             step_his = []
             # for episode in range(EPISODES):            #这里取消循环，后面如果加上别忘了缩进
@@ -268,17 +268,17 @@ if __name__ == "__main__":
         r31[k] = r3
         print(r1,r2,r3,r4)
 
-    t = np.arange(1 , T + 1 )
+    t = np.arange(1 +2 , T + 1 +2)
     plt.plot(t, np.log(r11 + 1e-5), color='r', linestyle=':', marker=None, label='random')
     plt.plot(t, np.log(r21 + 1e-5), color='c', linestyle='-.', marker=None, label='Greedy')
     plt.plot(t, np.log(r31 + 1e-5), color='y', linestyle='-', marker=None, label='Ep_Greedy')
-    plt.plot(t, np.log(r41 + 1e-5), color='b', linestyle='-', marker=None, label='DQN')
+    plt.plot(t, np.log(r41 + 1e-5), color='b', linestyle='-', marker=None, label='Double_DQN')
     plt.xlabel("Frequence_Num")
     plt.ylabel("H")
     plt.title("Frequence_number_influence")
     plt.legend()
     plt.show()
-    plt.savefig("30-60F,N100,M3多隐藏层分析")
+    plt.savefig("8F,N100,M20,5k多隐藏层D_DQN分析")
     '''
 
 
@@ -364,4 +364,80 @@ if __name__ == "__main__":
     plt.legend()
     plt.show()
     # plt.savefig("8F,less_Fre,N100,M20(5)")
+    '''
+
+    #double_DQN性能分析
+    '''
+    r6 = np.zeros(shape=([MAX_STEP,2]), dtype=float)
+
+    N = 100
+    Apply_num = N
+    M = 20
+    K = 5
+    for i in range (2):
+        tf.reset_default_graph()
+        memory = []
+        Transition = collections.namedtuple("Transition", ["state", "action", "reward", "next_state"])
+        state_0, Location_matrix, DQN_Allocation_matrix_0 = env.reset(N, M, K)
+        with tf.Session() as sess:
+            # DQN智能体
+            DQN = DQN_agent.DeepQNetwork(env, N, M, K, Lay_num_list, i, sess)
+            state = state_0
+            DQN_Allocation_matrix = DQN_Allocation_matrix_0
+            update_iter = 0
+            step_his = []
+            # for episode in range(EPISODES):            #这里取消循环，后面如果加上别忘了缩进
+            state, Location_matrix, DQN_Allocation_matrix = env.reset(N, M, K)
+            # env.render()
+            reward_all = 0
+            arg_num = 0
+            # training
+            for step in range(MAX_STEP):
+                action = DQN.chose_action(state)
+                # next_state, reward, done, _ = env.step(action)
+                next_state, reward, DQN_Allocation_matrix = env.step(reward_all, arg_num, DQN_Allocation_matrix,
+                                                                     action, Location_matrix, N, M, K)
+                reward_all += reward
+                arg_num += 1
+                if len(memory) > MEMORY_SIZE:
+                    memory.pop(0)
+                memory.append(Transition(state, action, reward, next_state))
+
+                if len(memory) > BATCH_SIZE * 4:
+                    batch_transition = random.sample(memory, BATCH_SIZE)
+                    # ***
+                    batch_state, batch_action, batch_reward, batch_next_state = map(np.array,
+                                                                                    zip(*batch_transition))
+                    DQN.train(state=batch_state,
+                              reward=batch_reward,
+                              action=batch_action,
+                              state_next=batch_next_state
+                              )
+                    update_iter += 1
+
+                if update_iter % UPDATE_PERIOD == 0:
+                    DQN.update_prmt()
+                    print("[网络{},][after {}tring,][reward_all = {} ]".format(i,step, reward_all))
+
+                if update_iter % 200 == 0:
+                    DQN.decay_epsilon()
+
+                if arg_num == Apply_num:
+                    arg_num = 0
+
+                state = next_state
+                r6[step,i] = reward_all
+            r4 = reward_all
+            print(r4)
+
+
+    t = np.arange(1 , MAX_STEP + 1 )
+    plt.plot(t, np.log(r6[:,0] + 1e-5), color='r', linestyle=':', marker=None, label='DQN')
+    plt.plot(t, np.log(r6[:,1] + 1e-5), color='c', linestyle='-.', marker=None, label='Double_DQN')
+    plt.xlabel("steps")
+    plt.ylabel("H")
+    plt.title("Double_DQN_influence")
+    plt.legend()
+    plt.show()
+    plt.savefig("Double_DQN")
     '''

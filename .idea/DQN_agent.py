@@ -18,7 +18,7 @@ import tensorflow.contrib.layers as layers
 
 ##built class for the DQN
 class DeepQNetwork():
-    def __init__(self, env, n, m, k, lay_num_list, sess=None, gamma=0.8, epsilon=0.8):
+    def __init__(self, env, n, m, k, lay_num_list,Double_DQN, sess=None, gamma=0.8, epsilon=0.8):
         self.gamma = gamma
         self.epsilon = epsilon
         #self.action_dim = env.action_space.n
@@ -26,6 +26,7 @@ class DeepQNetwork():
         self.action_dim = k
         self.state_dim = n*m*k
         self.lay_num_list = lay_num_list
+        self.double_DQN = Double_DQN
         self.network()
         self.sess = sess
         self.sess.run(tf.global_variables_initializer())
@@ -67,13 +68,26 @@ class DeepQNetwork():
             # training
 
     def train(self, state, reward, action, state_next):
-        q, q_target = self.sess.run([self.q_value, self.q_target],
-                                    feed_dict={self.inputs_q: state, self.inputs_target: state_next})
-        q_target_best = np.max(q_target, axis=1)
-        q_target_best_mask =  q_target_best
+        q, q_target, q_next = self.sess.run([self.q_value, self.q_target,self.q_value],
+                                    feed_dict={self.inputs_q: state,
+                                               self.inputs_target: state_next,
+                                               self.inputs_q: state_next})
+
+
+        if (self.double_DQN) :        #doubleDQN需要得到Q网络中的动作所在位置最大索引
+            #q_next_axis = np.argmax(q_next,axis=1)
+            #q_target_best = q_target[q_next_axis]
+            q_next_action = np.argmax(q_next,axis=1)            #找到q网络中最大动作价值索引
+            next_action_one_hot = tf.one_hot(q_next_action, self.action_dim)    #将其转化为one_hot形式
+            q_val_next = tf.multiply(q_target, next_action_one_hot)             #将选取动作与targetQ网络做点乘，选出对应动作的价值
+            q_val_next = self.sess.run(q_val_next)
+            q_target_best_mask = np.max(q_val_next,axis=1)                    #取出该值
+
+        else:
+            q_target_best = np.max(q_target, axis=1)
+            q_target_best_mask =  q_target_best
 
         target = reward + self.gamma * q_target_best_mask
-
         loss, _ = self.sess.run([self.loss, self.train_op],
                                 feed_dict={self.inputs_q: state, self.target: target, self.action: action})
         # chose action
@@ -81,7 +95,6 @@ class DeepQNetwork():
     def chose_action(self, current_state):
         current_state = current_state[np.newaxis, :]  # *** array dim: (xx,)  --> (1 , xx) ***
         q = self.sess.run(self.q_value, feed_dict={self.inputs_q: current_state})
-
         # e-greedy
         if np.random.random() < self.epsilon:
             action_chosen = np.random.randint(0, self.action_dim)
