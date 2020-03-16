@@ -18,7 +18,7 @@ import tensorflow.contrib.layers as layers
 
 ##built class for the DQN
 class DeepQNetwork():
-    def __init__(self, env, n, m, k, lay_num_list,Double_DQN, sess=None, gamma=0.8, epsilon=0.8):
+    def __init__(self, env, n, m, k, lay_num_list,Double_DQN, Duling_DQN, sess=None, gamma=0.8, epsilon=0.8):
         self.gamma = gamma
         self.epsilon = epsilon
         #self.action_dim = env.action_space.n
@@ -27,6 +27,7 @@ class DeepQNetwork():
         self.state_dim = n*m*k
         self.lay_num_list = lay_num_list
         self.double_DQN = Double_DQN
+        self.duling_DQN = Duling_DQN
         self.network()
         self.sess = sess
         self.sess.run(tf.global_variables_initializer())
@@ -38,8 +39,13 @@ class DeepQNetwork():
             out = inpt
             for hidden in hiddens:
                 out = layers.fully_connected(out, num_outputs=hidden, activation_fn=tf.nn.relu)
-            out = layers.fully_connected(out, num_outputs=num_actions, activation_fn=None)
-            return out
+            if (self.duling_DQN):       #Duling_DQN将网络结构改变
+                out_v = layers.fully_connected(out, num_outputs=1, activation_fn=None)
+                out_a = layers.fully_connected(out, num_outputs=num_actions, activation_fn=None)
+                out_q = out_v + (out_a  - tf.reduce_mean(out_a, axis=1, keep_dims=True))
+            else:
+                out_q = layers.fully_connected(out, num_outputs=num_actions, activation_fn=None)
+            return out_q
 
     # create q_network & target_network
     def network(self):
