@@ -9,12 +9,13 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 #智能体变量
-MEMORY_SIZE = 60
+MEMORY_SIZE = 100
 EPISODES = 1            #不同用户分布情况下重复
-MAX_STEP = 200
-BATCH_SIZE = 10       #单次训练量大小
+MAX_STEP = 500
+BATCH_SIZE = 1       #单次训练量大小
 UPDATE_PERIOD = 10  # update target network parameters目标网络随训练步数更新周期
-Lay_num_list = [4096, 2048, 1024, 512, 256, 128, 64, 32, 16]
+decay_epsilon_STEPS = 200       #降低探索概率次数
+Lay_num_list = [4096, 2048, 1024, 256, 128, 64, 32, 16] #隐藏层节点设置
 #Lay_num = 100           #隐藏层层数
 #环境变量
 #N = 100             #申请用户数量
@@ -48,27 +49,32 @@ if __name__ == "__main__":
     M = 20
 
     for n in range(T):
-        N = n + 20
+        N = n + 1
         Apply_num = N
         tf.reset_default_graph()
         memory = []
         Transition = collections.namedtuple("Transition", ["state", "action", "reward", "next_state"])
         with tf.Session() as sess:
             # DQN智能体
-            DQN = DQN_agent.DeepQNetwork(env, N, M, K, Lay_num_list, True, True, sess)        #Double,Duling = 1
+            DQN = DQN_agent.DeepQNetwork(env, N, M, K, Lay_num_list, True, True, sess)  # Double,Duling= 1
             update_iter = 0
             step_his = []
             # for episode in range(EPISODES):            #这里取消循环，后面如果加上别忘了缩进
             state, Location_matrix, DQN_Allocation_matrix = env.reset(N, M, K)
-            # env.render()
             reward_all = 0
             arg_num = 0
+            success_num = 0
             # training
-            for step in range(MAX_STEP):
+            for step in range(MAX_STEP):#训练
                 action = DQN.chose_action(state)
                 # next_state, reward, done, _ = env.step(action)
-                next_state, reward, DQN_Allocation_matrix = env.step(reward_all, arg_num, DQN_Allocation_matrix,
-                                                                     action, Location_matrix, N, M, K)
+                success_num, next_state, reward, DQN_Allocation_matrix = env.step(success_num,
+                                                                                  reward_all,
+                                                                                  arg_num,
+                                                                                  DQN_Allocation_matrix,
+                                                                                  action,
+                                                                                  Location_matrix,
+                                                                                  N, M, K)
                 reward_all += reward
                 arg_num += 1
                 if len(memory) > MEMORY_SIZE:
@@ -89,23 +95,46 @@ if __name__ == "__main__":
 
                 if update_iter % UPDATE_PERIOD == 0:
                     DQN.update_prmt()
-                    # print("[after {}tring,][reward_all = {} ]".format(step, reward_all))
+                    #print("[after {}tring,][success_num is{}][reward_all = {} ]".format(step, success_num, reward_all))
 
-                if update_iter % 60 == 0:
+                if update_iter % decay_epsilon_STEPS == 0:
                     DQN.decay_epsilon()
 
                 if arg_num == Apply_num:
                     arg_num = 0
 
                 state = next_state
+
+            # 进行测试
+            state, _, DQN_Allocation_matrix = env.reset(N, M, K)
+            reward_all = 0
+            arg_num = 0
+            reward = 0
+            success_num = 0
+            for step in range(Apply_num):
+                action = DQN.chose_action(state)
+                print(action)
+                success_num,next_state, reward, DQN_Allocation_matrix = env.step(success_num,
+                                                                                 reward_all,
+                                                                                 arg_num,
+                                                                                 DQN_Allocation_matrix,
+                                                                                 action,
+                                                                                 Location_matrix,
+                                                                                 N, M, K)
+                reward_all += reward
+                arg_num += 1
+                state = next_state
+                #print(arg_num,success_num,reward_all)
             r4 = reward_all
-            r42[n] = r4
-        r1, r2, r3 = Oth.run_process(N, M, K, Location_matrix)
+            #print("[rewarld is{}]",format(r4))
+            r42[k] = r4
+        r1, r2, r3, n1, n2, n3 = Oth.run_process(N, M, K, Location_matrix)
         r12[n] = r1
         r22[n] = r2
         r32[n] = r3
-        print(r1, r2, r3, r4)
-    k = np.arange(1 + 20 , T + 1 +20)
+        print(n1,r1,n2,r2,n3, r3,success_num,r4)
+        
+    k = np.arange(1  , T + 1)
     plt.plot(k, np.log(r12 + 1e-5), color='r', linestyle=':', marker=None, label='random')
     plt.plot(k, np.log(r22 + 1e-5), color='c', linestyle='-.', marker=None, label='Greedy')
     plt.plot(k, np.log(r32 + 1e-5), color='y', linestyle='-', marker=None, label='Ep_Greedy')
@@ -114,13 +143,14 @@ if __name__ == "__main__":
     plt.xlabel("Apply_Num")
     plt.ylabel("H")
     plt.title("Apply_number_influence")
-    #plt.savefig("20-100用户,多隐藏层，Double，Duling")
+    #plt.savefig("DQN用户,多隐藏层，Double，Duling")
     plt.show()
     '''
 
 
     # 基站敏感性实验(少频点)
     '''
+    T = 15
     r13 = np.zeros(shape=(T), dtype=float)
     r23 = np.zeros(shape=(T), dtype=float)
     r33 = np.zeros(shape=(T), dtype=float)
@@ -135,21 +165,27 @@ if __name__ == "__main__":
         tf.reset_default_graph()
         memory = []
         Transition = collections.namedtuple("Transition", ["state", "action", "reward", "next_state"])
+        # DQN智能体
         with tf.Session() as sess:
-            # DQN智能体
-            DQN = DQN_agent.DeepQNetwork(env, N, M, K, Lay_num_list,1, sess)        #Double_DQN = 1
+            DQN = DQN_agent.DeepQNetwork(env, N, M, K, Lay_num_list, True, True, sess)  # Double,Duling= 1
             update_iter = 0
             step_his = []
             # for episode in range(EPISODES):            #这里取消循环，后面如果加上别忘了缩进
             state, Location_matrix, DQN_Allocation_matrix = env.reset(N, M, K)
-            # env.render()
             reward_all = 0
             arg_num = 0
+            success_num = 0
             # training
-            for step in range(MAX_STEP):
+            for step in range(MAX_STEP):#训练
                 action = DQN.chose_action(state)
-                next_state, reward, DQN_Allocation_matrix = env.step(reward_all, arg_num, DQN_Allocation_matrix,
-                                                                     action, Location_matrix, N, M, K)
+                # next_state, reward, done, _ = env.step(action)
+                success_num, next_state, reward, DQN_Allocation_matrix = env.step(success_num,
+                                                                                  reward_all,
+                                                                                  arg_num,
+                                                                                  DQN_Allocation_matrix,
+                                                                                  action,
+                                                                                  Location_matrix,
+                                                                                  N, M, K)
                 reward_all += reward
                 arg_num += 1
                 if len(memory) > MEMORY_SIZE:
@@ -170,22 +206,44 @@ if __name__ == "__main__":
 
                 if update_iter % UPDATE_PERIOD == 0:
                     DQN.update_prmt()
-                    # print("[after {}tring,][reward_all = {} ]".format(step, reward_all))
+                    #print("[after {}tring,][success_num is{}][reward_all = {} ]".format(step, success_num, reward_all))
 
-                if update_iter % 200 == 0:
+                if update_iter % decay_epsilon_STEPS == 0:
                     DQN.decay_epsilon()
-                    
+
                 if arg_num == Apply_num:
                     arg_num = 0
 
                 state = next_state
+
+            # 进行测试
+            state, _, DQN_Allocation_matrix = env.reset(N, M, K)
+            reward_all = 0
+            arg_num = 0
+            reward = 0
+            success_num = 0
+            for step in range(Apply_num):
+                action = DQN.chose_action(state)
+                print(action)
+                success_num,next_state, reward, DQN_Allocation_matrix = env.step(success_num,
+                                                                                 reward_all,
+                                                                                 arg_num,
+                                                                                 DQN_Allocation_matrix,
+                                                                                 action,
+                                                                                 Location_matrix,
+                                                                                 N, M, K)
+                reward_all += reward
+                arg_num += 1
+                state = next_state
+                #print(arg_num,success_num,reward_all)
             r4 = reward_all
+            #print("[rewarld is{}]",format(r4))
             r43[m] = r4
-        r1, r2, r3 = Oth.run_process(N, M, K, Location_matrix)
+        r1, r2, r3, n1, n2, n3 = Oth.run_process(N, M, K, Location_matrix)
         r13[m] = r1
         r23[m] = r2
         r33[m] = r3
-        print(r1,r2,r3,r4)
+        print(n1,r1,n2,r2,n3, r3,success_num,r4)
 
     k = np.arange(1+ 10, T + 1 + 10)
     plt.plot(k, np.log(r13 + 1e-5), color='r', linestyle=':', marker=None, label='random')
@@ -196,91 +254,7 @@ if __name__ == "__main__":
     plt.xlabel("Base_Num")
     plt.ylabel("H")
     plt.title("Base_number_influence")
-    #plt.savefig("10B")
-    plt.show()
-    '''
-
-    #少频率选择（动作空间）下频点敏感性分析
-    '''
-    T = 7
-    r11 = np.zeros(shape=(T), dtype=float)
-    r21 = np.zeros(shape=(T), dtype=float)
-    r31 = np.zeros(shape=(T), dtype=float)
-    r41 = np.zeros(shape=(T), dtype=float)
-    
-    N = 100
-    Apply_num = N
-    M = 20
-
-    for k in range(T):
-        K = k + 2
-        tf.reset_default_graph()
-        memory = []
-        Transition = collections.namedtuple("Transition", ["state", "action", "reward", "next_state"])
-        with tf.Session() as sess:
-            # DQN智能体
-            DQN = DQN_agent.DeepQNetwork(env, N, M, K, Lay_num_list, True, True, sess)        #Double,Duling= 1
-            update_iter = 0
-            step_his = []
-            # for episode in range(EPISODES):            #这里取消循环，后面如果加上别忘了缩进
-            state, Location_matrix, DQN_Allocation_matrix = env.reset(N, M, K)
-            # env.render()
-            reward_all = 0
-            arg_num = 0
-            # training
-            for step in range(MAX_STEP):
-                action = DQN.chose_action(state)
-                # next_state, reward, done, _ = env.step(action)
-                next_state, reward, DQN_Allocation_matrix = env.step(reward_all, arg_num, DQN_Allocation_matrix,
-                                                                     action, Location_matrix, N, M, K)
-                reward_all += reward
-                arg_num += 1
-                if len(memory) > MEMORY_SIZE:
-                    memory.pop(0)
-                memory.append(Transition(state, action, reward, next_state))
-
-                if len(memory) > BATCH_SIZE * 4:
-                    batch_transition = random.sample(memory, BATCH_SIZE)
-                    # ***
-                    batch_state, batch_action, batch_reward, batch_next_state = map(np.array,
-                                                                                    zip(*batch_transition))
-                    DQN.train(state=batch_state,
-                              reward=batch_reward,
-                              action=batch_action,
-                              state_next=batch_next_state
-                              )
-                    update_iter += 1
-
-                if update_iter % UPDATE_PERIOD == 0:
-                    DQN.update_prmt()
-                    #print("[after {}tring,][reward_all = {} ]".format(step, reward_all))
-
-                if update_iter % 60 == 0:
-                    DQN.decay_epsilon()
-
-                if arg_num == Apply_num:
-                    arg_num = 0
-
-                state = next_state
-            r4 = reward_all
-            # print(r4)
-            r41[k] = r4
-        r1, r2, r3 = Oth.run_process(N, M, K, Location_matrix)
-        r11[k] = r1
-        r21[k] = r2
-        r31[k] = r3
-        print(r1,r2,r3,r4)
-
-    t = np.arange(1 +2 , T + 1 +2)
-    plt.plot(t, np.log(r11 + 1e-5), color='r', linestyle=':', marker=None, label='random')
-    plt.plot(t, np.log(r21 + 1e-5), color='c', linestyle='-.', marker=None, label='Greedy')
-    plt.plot(t, np.log(r31 + 1e-5), color='y', linestyle='-', marker=None, label='Ep_Greedy')
-    plt.plot(t, np.log(r41 + 1e-5), color='b', linestyle='-', marker=None, label='Double_DQN')
-    plt.xlabel("Frequence_Num")
-    plt.ylabel("H")
-    plt.title("Frequence_number_influence")
-    plt.legend()
-    plt.savefig("频点,多隐藏层,Double，Duling分析")
+    #plt.savefig("DQN基站影响")
     plt.show()
     '''
 
@@ -299,7 +273,7 @@ if __name__ == "__main__":
     K = 5
     memory = []
     Transition = collections.namedtuple("Transition", ["state", "action", "reward", "next_state"])
-    state_0, Location_matrix, DQN_Allocation_matrix_0 = env.reset(N, M, K)
+    state, Location_matrix, DQN_Allocation_matrix = env.reset(N, M, K)
     #r1, r2, r3 = Oth.run_process(N, M, K, Location_matrix)
     for i in range(4):
         lay_num_list = Lay_num_list[i]
@@ -308,19 +282,22 @@ if __name__ == "__main__":
         with tf.Session() as sess:
             # DQN智能体
             DQN = DQN_agent.DeepQNetwork(env, N, M, K, lay_num_list, sess)
-            state = state_0
-            DQN_Allocation_matrix = DQN_Allocation_matrix_0
             update_iter = 0
             step_his = []
             # for episode in range(EPISODES):            #这里取消循环，后面如果加上别忘了缩进
             reward_all = 0
+            success_num = 0
             arg_num = 0
             # training
             for step in range(MAX_STEP):
                 action = DQN.chose_action(state)
                 # next_state, reward, done, _ = env.step(action)
-                next_state, reward, DQN_Allocation_matrix = env.step(reward_all, arg_num, DQN_Allocation_matrix,
-                                                                     action, Location_matrix, N, M, K)
+                success_num,next_state, reward, DQN_Allocation_matrix = env.step(reward_all, 
+                                                                                    arg_num, 
+                                                                                    DQN_Allocation_matrix,
+                                                                                    action, 
+                                                                                    Location_matrix, 
+                                                                                    N, M, K)
                 reward_all += reward
                 arg_num += 1
                 if len(memory) > MEMORY_SIZE:
@@ -363,8 +340,9 @@ if __name__ == "__main__":
     plt.ylabel("H")
     plt.title("Hidden_Layer_influence")
     plt.legend()
-    plt.show()
     # plt.savefig("8F,less_Fre,N100,M20(5)")
+    plt.show()
+    
     '''
 
     #double_DQN性能分析
@@ -375,7 +353,7 @@ if __name__ == "__main__":
     Apply_num = N
     M = 20
     K = 5
-    state_0, Location_matrix, DQN_Allocation_matrix_0 = env.reset(N, M, K)
+    state, Location_matrix, DQN_Allocation_matrix = env.reset(N, M, K)
     for i in range (2):
         tf.reset_default_graph()
         memory = []
@@ -383,21 +361,23 @@ if __name__ == "__main__":
         with tf.Session() as sess:
             # DQN智能体
             DQN = DQN_agent.DeepQNetwork(env, N, M, K, Lay_num_list, i,True, sess)
-            state = state_0
-            DQN_Allocation_matrix = DQN_Allocation_matrix_0
             update_iter = 0
             step_his = []
             # for episode in range(EPISODES):            #这里取消循环，后面如果加上别忘了缩进
-            state, Location_matrix, DQN_Allocation_matrix = env.reset(N, M, K)
-            # env.render()
+            state, _, DQN_Allocation_matrix = env.reset(N, M, K)
             reward_all = 0
             arg_num = 0
+            success_num = 0
             # training
             for step in range(MAX_STEP):
                 action = DQN.chose_action(state)
                 # next_state, reward, done, _ = env.step(action)
-                next_state, reward, DQN_Allocation_matrix = env.step(reward_all, arg_num, DQN_Allocation_matrix,
-                                                                     action, Location_matrix, N, M, K)
+                success_num, next_state, reward, DQN_Allocation_matrix = env.step(success_num, 
+                                                                                    reward_all, arg_num, 
+                                                                                    DQN_Allocation_matrix,
+                                                                                    action,
+                                                                                    Location_matrix,
+                                                                                     N, M, K)
                 reward_all += reward
                 arg_num += 1
                 if len(memory) > MEMORY_SIZE:
@@ -443,7 +423,7 @@ if __name__ == "__main__":
     plt.show()
     '''
 
-    #_DQN性能分析
+    #Duling_DQN性能分析
     '''
     r7 = np.zeros(shape=([MAX_STEP,2]), dtype=float)
 
@@ -451,7 +431,7 @@ if __name__ == "__main__":
     Apply_num = N
     M = 20
     K = 5
-    state_0, Location_matrix, DQN_Allocation_matrix_0 = env.reset(N, M, K)
+    state, Location_matrix, DQN_Allocation_matrix = env.reset(N, M, K)
     for i in range (2):
         tf.reset_default_graph()
         memory = []
@@ -459,21 +439,23 @@ if __name__ == "__main__":
         with tf.Session() as sess:
             # DQN智能体
             DQN = DQN_agent.DeepQNetwork(env, N, M, K, Lay_num_list, True, i, sess) #这里i为0或1代表是否使用duling
-            state = state_0
-            DQN_Allocation_matrix = DQN_Allocation_matrix_0
             update_iter = 0
             step_his = []
             # for episode in range(EPISODES):            #这里取消循环，后面如果加上别忘了缩进
-            state, Location_matrix, DQN_Allocation_matrix = env.reset(N, M, K)
-            # env.render()
+            state,_, DQN_Allocation_matrix = env.reset(N, M, K)
             reward_all = 0
+            success_num = 0
             arg_num = 0
             # training
             for step in range(MAX_STEP):
                 action = DQN.chose_action(state)
                 # next_state, reward, done, _ = env.step(action)
-                next_state, reward, DQN_Allocation_matrix = env.step(reward_all, arg_num, DQN_Allocation_matrix,
-                                                                     action, Location_matrix, N, M, K)
+                success_num,next_state, reward, DQN_Allocation_matrix = env.step(success_num,
+                                                                                 reward_all, 
+                                                                                 arg_num, 
+                                                                                 DQN_Allocation_matrix,
+                                                                                 action, Location_matrix, 
+                                                                                 N, M, K)
                 reward_all += reward
                 arg_num += 1
                 if len(memory) > MEMORY_SIZE:
@@ -519,3 +501,115 @@ if __name__ == "__main__":
     plt.show()
     '''
 
+    #训练动作区分进行,频点测试
+
+    T = 5
+    r11 = np.zeros(shape=(T), dtype=float)
+    r21 = np.zeros(shape=(T), dtype=float)
+    r31 = np.zeros(shape=(T), dtype=float)
+    r41 = np.zeros(shape=(T), dtype=float)
+
+    N = 100
+    Apply_num = N
+    M = 20
+
+    for k in range(T):
+        K = k + 2
+        tf.reset_default_graph()
+        memory = []
+        Transition = collections.namedtuple("Transition", ["state", "action", "reward", "next_state"])
+        with tf.Session() as sess:
+            # DQN智能体
+            DQN = DQN_agent.DeepQNetwork(env, N, M, K, Lay_num_list, True, True, sess)  # Double,Duling= 1
+            update_iter = 0
+            step_his = []
+            # for episode in range(EPISODES):            #这里取消循环，后面如果加上别忘了缩进
+            state, Location_matrix, DQN_Allocation_matrix = env.reset(N, M, K)
+            reward_all = 0
+            arg_num = 0
+            success_num = 0
+            print("网络训练中....")
+            # training
+            for step in range(MAX_STEP):#训练
+                action = DQN.chose_action(state)
+                # next_state, reward, done, _ = env.step(action)
+                success_num, next_state, reward, DQN_Allocation_matrix = env.step(success_num,
+                                                                                  reward_all,
+                                                                                  arg_num,
+                                                                                  DQN_Allocation_matrix,
+                                                                                  action,
+                                                                                  Location_matrix,
+                                                                                  N, M, K)
+                reward_all += reward
+                arg_num += 1
+                if len(memory) > MEMORY_SIZE:
+                    memory.pop(0)
+                memory.append(Transition(state, action, reward, next_state))
+
+                if len(memory) > BATCH_SIZE * 4:
+                    batch_transition = random.sample(memory, BATCH_SIZE)
+                    # ***
+                    batch_state, batch_action, batch_reward, batch_next_state = map(np.array,
+                                                                                    zip(*batch_transition))
+                    DQN.train(state=batch_state,
+                              reward=batch_reward,
+                              action=batch_action,
+                              state_next=batch_next_state
+                              )
+                    update_iter += 1
+
+                if update_iter % UPDATE_PERIOD == 0:
+                    DQN.update_prmt()
+                    print("[after {}tring,][success_num is{}][reward_all = {} ]".format(step, success_num, reward_all))
+
+                if update_iter % decay_epsilon_STEPS == 0:
+                    DQN.decay_epsilon()
+
+                if arg_num == Apply_num:
+                    arg_num = 0
+
+                state = next_state
+
+            # 进行测试
+            state, _, DQN_Allocation_matrix = env.reset(N, M, K)
+            reward_all = 0
+            arg_num = 0
+            reward = 0
+            success_num = 0
+            print("开始测试输出：")
+            for step in range(Apply_num):
+                action = DQN.chose_action(state)
+                print(action)
+                success_num,next_state, reward, DQN_Allocation_matrix = env.step(success_num,
+                                                                                 reward_all,
+                                                                                 arg_num,
+                                                                                 DQN_Allocation_matrix,
+                                                                                 action,
+                                                                                 Location_matrix,
+                                                                                 N, M, K)
+                reward_all += reward
+                arg_num += 1
+                state = next_state
+                #print(arg_num,success_num,reward_all)
+            r4 = reward_all
+            #print("[rewarld is{}]",format(r4))
+            r41[k] = r4
+            print("进行常规算法计算：")
+            r1, r2, r3, n1, n2, n3 = Oth.run_process(N, M, K, Location_matrix)
+            r11[k] = r1
+            r21[k] = r2
+            r31[k] = r3
+            print(n1,r1,n2,r2,n3, r3,success_num,r4)
+
+    print("绘制性能分析折线图：")
+    t = np.arange(1 + 2, T + 1 + 2)
+    plt.plot(t, np.log(r11 + 1e-5), color='r', linestyle=':', marker=None, label='random')
+    plt.plot(t, np.log(r21 + 1e-5), color='c', linestyle='-.', marker=None, label='Greedy')
+    plt.plot(t, np.log(r31 + 1e-5), color='y', linestyle='-', marker=None, label='Ep_Greedy')
+    plt.plot(t, np.log(r41 + 1e-5), color='b', linestyle='-', marker=None, label='DQN')
+    plt.xlabel("Frequence_Num")
+    plt.ylabel("H")
+    plt.title("Frequence_number_influence")
+    plt.legend()
+    #plt.savefig("DQN频点分析")
+    plt.show()

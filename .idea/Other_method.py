@@ -212,7 +212,7 @@ def run_process(n,m,k,Location_matrix):
     I_matrix3 = I_caculate(n, m, k, Allocation_matrix3)
     # print(I_matrix)
     r3 = R_caculate(n, m, k, Allocation_matrix3, I_matrix3)
-    return r1, r2, r3
+    return r1, r2, r3,num1,num2,num3
 '''   
     #Location_matrix_show(Location_matrix)
     print("参数设置为%d位申请者，%d个基站,每个基站可用频点为%d" % (N, M, K))

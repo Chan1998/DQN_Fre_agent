@@ -18,7 +18,7 @@ def Location_matrix_df(n,m,k):
     return Location_matrix
 
 #定义DQN分配矩阵
-def DQN_Allocation_add(reward_all,Location_matrix,DQN_Allocation_matrix,action,arg_num,n,m,k):
+def DQN_Allocation_add(success_num,reward_all,Location_matrix,DQN_Allocation_matrix,action,arg_num,n,m,k):
     n1 = int(arg_num)
     k1 = int(action)
     #DQN_Allocation_matrix[n1,:,:] = 0
@@ -30,6 +30,7 @@ def DQN_Allocation_add(reward_all,Location_matrix,DQN_Allocation_matrix,action,a
             if flag == 0:
                 DQN_Allocation_matrix[n1, l, k1] = 1
                 #print("基站%d范围内%d号用户,频段 %d 成功分配" % (l, n1, k1))
+                success_num += 1
                 I_matrix = I_caculate(DQN_Allocation_matrix,n,m,k)
                 r = R_caculate(DQN_Allocation_matrix,I_matrix,n,m,k)-reward_all
                 break
@@ -41,7 +42,7 @@ def DQN_Allocation_add(reward_all,Location_matrix,DQN_Allocation_matrix,action,a
         else:
             r = 0
 
-    return DQN_Allocation_matrix,r
+    return success_num, DQN_Allocation_matrix,r
 
 
 #计算分配矩阵传输数据量
@@ -69,12 +70,12 @@ def reset(n,m,k):
     return state,Location_matrix,DQN_Allocation_matrix
 
 #给出下一步环境
-def step(reward_all,arg_num,DQN_Allocation_matrix,action,Location_matrix,n,m,k):
+def step(success_num,reward_all,arg_num,DQN_Allocation_matrix,action,Location_matrix,n,m,k):
     #next_state = state
-    DQN_Allocation_matrix,reward = DQN_Allocation_add(reward_all,Location_matrix,
+    success_num,DQN_Allocation_matrix,reward = DQN_Allocation_add(success_num, reward_all,Location_matrix,
                                                       DQN_Allocation_matrix, action, arg_num,n,m,k)
     next_state = np.reshape(DQN_Allocation_matrix,[n*m*k])
-    return next_state,reward,DQN_Allocation_matrix
+    return success_num,next_state,reward,DQN_Allocation_matrix
 
 '''
 state,arg_num ,Location_matrix,DQN_Allocation_matrix= reset()
