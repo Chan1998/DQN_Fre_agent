@@ -1,14 +1,7 @@
 import numpy as np
 import random
 
-#Apply_num = 100
 
-#M = 10              #可用基站数
-#K = 20 #可用基站频点 = 动作空间,哪个位置输出最大，选定哪个频点
-#N = Apply_num             #申请用户数量
-
-#Observation_space_num = M*N*K
-#Action_space_num = K
 
 #定义用户随机分布
 def Location_matrix_df(n,m,k):
@@ -17,7 +10,34 @@ def Location_matrix_df(n,m,k):
         Location_matrix[i,int(m * random.random()),0:k] = 1
     return Location_matrix
 
-#定义DQN分配矩阵
+#定义DQN分配矩阵（传输速率为目标）
+# def DQN_Allocation_add(success_num,reward_all,Location_matrix,DQN_Allocation_matrix,action,arg_num,n,m,k):
+#     n1 = int(arg_num)
+#     k1 = int(action)
+#     #DQN_Allocation_matrix[n1,:,:] = 0
+#     flag = 0
+#     for l in range(m):
+#         if (np.all(Location_matrix[n1, l, 0]) == 1) and (np.all(DQN_Allocation_matrix[n1,l,:] == 0 )):
+#             for j in range(n):
+#                 flag = flag + DQN_Allocation_matrix[j, l, k1]  # 观察x号频段是否有人使用
+#             if flag == 0:
+#                 DQN_Allocation_matrix[n1, l, k1] = 1
+#                 #print("基站%d范围内%d号用户,频段 %d 成功分配" % (l, n1, k1))
+#                 success_num += 1
+#                 I_matrix = I_caculate(DQN_Allocation_matrix,n,m,k)
+#                 r = R_caculate(DQN_Allocation_matrix,I_matrix,n,m,k)-reward_all
+#                 break
+#             else:
+#                 flag = 0
+#                 #print("对于基站%d范围内%d号用户,频段 %d 已被占用" % (l, n1, k1))
+#                 #print("基站%d范围内%d号用户,随机分配失败" % (l,n1))
+#                 r = 0
+#         else:
+#             r = 0
+#
+#     return success_num, DQN_Allocation_matrix,r
+
+#成功人数为目标
 def DQN_Allocation_add(success_num,reward_all,Location_matrix,DQN_Allocation_matrix,action,arg_num,n,m,k):
     n1 = int(arg_num)
     k1 = int(action)
@@ -32,13 +52,13 @@ def DQN_Allocation_add(success_num,reward_all,Location_matrix,DQN_Allocation_mat
                 #print("基站%d范围内%d号用户,频段 %d 成功分配" % (l, n1, k1))
                 success_num += 1
                 I_matrix = I_caculate(DQN_Allocation_matrix,n,m,k)
-                r = R_caculate(DQN_Allocation_matrix,I_matrix,n,m,k)-reward_all
+                r = 0*(R_caculate(DQN_Allocation_matrix,I_matrix,n,m,k)-reward_all) + 1*(3.0)
                 break
             else:
                 flag = 0
                 #print("对于基站%d范围内%d号用户,频段 %d 已被占用" % (l, n1, k1))
                 #print("基站%d范围内%d号用户,随机分配失败" % (l,n1))
-                r = 0
+                r = -0.1
         else:
             r = 0
 

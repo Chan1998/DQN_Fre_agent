@@ -12,9 +12,9 @@ import seaborn as sns
 MEMORY_SIZE = 100
 EPISODES = 1            #不同用户分布情况下重复
 MAX_STEP = 500
-BATCH_SIZE = 1       #单次训练量大小
-UPDATE_PERIOD = 10  # update target network parameters目标网络随训练步数更新周期
-decay_epsilon_STEPS = 200       #降低探索概率次数
+BATCH_SIZE = 2       #单次训练量大小
+UPDATE_PERIOD = 20  # update target network parameters目标网络随训练步数更新周期
+decay_epsilon_STEPS = 100       #降低探索概率次数
 Lay_num_list = [4096, 2048, 1024, 256, 128, 64, 32, 16] #隐藏层节点设置
 #Lay_num = 100           #隐藏层层数
 #环境变量
@@ -503,7 +503,8 @@ if __name__ == "__main__":
 
     #训练动作区分进行,频点测试
 
-    T = 5
+    T = 1
+    r01 = np.zeros(shape=(T), dtype=float)
     r11 = np.zeros(shape=(T), dtype=float)
     r21 = np.zeros(shape=(T), dtype=float)
     r31 = np.zeros(shape=(T), dtype=float)
@@ -514,7 +515,7 @@ if __name__ == "__main__":
     M = 20
 
     for k in range(T):
-        K = k + 2
+        K = k + 1 + 3
         tf.reset_default_graph()
         memory = []
         Transition = collections.namedtuple("Transition", ["state", "action", "reward", "next_state"])
@@ -579,7 +580,7 @@ if __name__ == "__main__":
             print("开始测试输出：")
             for step in range(Apply_num):
                 action = DQN.chose_action(state)
-                print(action)
+                #print(action)
                 success_num,next_state, reward, DQN_Allocation_matrix = env.step(success_num,
                                                                                  reward_all,
                                                                                  arg_num,
@@ -589,27 +590,72 @@ if __name__ == "__main__":
                                                                                  N, M, K)
                 reward_all += reward
                 arg_num += 1
+
+                if arg_num == Apply_num:
+                    arg_num = 0
+
                 state = next_state
                 #print(arg_num,success_num,reward_all)
-            r4 = reward_all
+            #r4 = reward_all
+            I_matrix_1 = env.I_caculate(DQN_Allocation_matrix, N, M, K)
+            r4 = env.R_caculate(DQN_Allocation_matrix,I_matrix_1,N, M, K)
             #print("[rewarld is{}]",format(r4))
             r41[k] = r4
             print("进行常规算法计算：")
-            r1, r2, r3, n1, n2, n3 = Oth.run_process(N, M, K, Location_matrix)
+            r0, r1, r2, r3, n0, n1, n2, n3 = Oth.run_process(N, M, K, Location_matrix)
             r11[k] = r1
             r21[k] = r2
             r31[k] = r3
-            print(n1,r1,n2,r2,n3, r3,success_num,r4)
+            print(n0, r0, n1, r1, n2, r2, n3, r3, success_num, r4)
 
-    print("绘制性能分析折线图：")
-    t = np.arange(1 + 2, T + 1 + 2)
-    plt.plot(t, np.log(r11 + 1e-5), color='r', linestyle=':', marker=None, label='random')
-    plt.plot(t, np.log(r21 + 1e-5), color='c', linestyle='-.', marker=None, label='Greedy')
-    plt.plot(t, np.log(r31 + 1e-5), color='y', linestyle='-', marker=None, label='Ep_Greedy')
-    plt.plot(t, np.log(r41 + 1e-5), color='b', linestyle='-', marker=None, label='DQN')
-    plt.xlabel("Frequence_Num")
-    plt.ylabel("H")
-    plt.title("Frequence_number_influence")
-    plt.legend()
-    #plt.savefig("DQN频点分析")
-    plt.show()
+            #迁移测试
+            print("可迁移性测试")
+            for t in range(4):
+                state, Location_matrix, DQN_Allocation_matrix = env.reset(N, M, K)
+                reward_all = 0
+                arg_num = 0
+                reward = 0
+                success_num = 0
+                print("开始测试输出：")
+                for step in range(Apply_num):
+                    action = DQN.chose_action(state)
+                    #print(action)
+                    success_num, next_state, reward, DQN_Allocation_matrix = env.step(success_num,
+                                                                                      reward_all,
+                                                                                      arg_num,
+                                                                                      DQN_Allocation_matrix,
+                                                                                      action,
+                                                                                      Location_matrix,
+                                                                                      N, M, K)
+                    reward_all += reward
+                    arg_num += 1
+
+                    if arg_num == Apply_num:
+                        arg_num = 0
+
+                    state = next_state
+                    # print(arg_num,success_num,reward_all)
+                # r4 = reward_all
+                I_matrix_1 = env.I_caculate(DQN_Allocation_matrix, N, M, K)
+                r4 = env.R_caculate(DQN_Allocation_matrix, I_matrix_1, N, M, K)
+                # print("[rewarld is{}]",format(r4))
+                r41[k] = r4
+                print("新分布进行常规算法计算：")
+                r0, r1, r2, r3, n0, n1, n2, n3 = Oth.run_process(N, M, K, Location_matrix)
+                r11[k] = r1
+                r21[k] = r2
+                r31[k] = r3
+                print(n0, r0, n1, r1, n2, r2, n3, r3, success_num, r4)
+
+    # print("绘制性能分析折线图：")
+    # t = np.arange(1+5 , T + 1+5 )
+    # plt.plot(t, np.log(r11 + 1e-5), color='r', linestyle=':', marker=None, label='random')
+    # plt.plot(t, np.log(r21 + 1e-5), color='c', linestyle='-.', marker=None, label='Greedy')
+    # plt.plot(t, np.log(r31 + 1e-5), color='y', linestyle='-', marker=None, label='Ep_Greedy')
+    # plt.plot(t, np.log(r41 + 1e-5), color='b', linestyle='-', marker=None, label='DQN')
+    # plt.xlabel("Frequence_Num")
+    # plt.ylabel("H")
+    # plt.title("Frequence_number_influence")
+    # plt.legend()
+    # #plt.savefig("DQN频点分析")
+    # plt.show()
