@@ -1,8 +1,6 @@
 import tensorflow as tf
 import numpy as np
 import collections
-# import gym
-#import Fre_env
 import random
 import tensorflow.contrib.layers as layers
 
@@ -18,11 +16,9 @@ import tensorflow.contrib.layers as layers
 
 ##built class for the DQN
 class DeepQNetwork():
-    def __init__(self, env, n, m, k, lay_num_list,Double_DQN, Duling_DQN, sess=None, gamma=0.8, epsilon=0.8):
+    def __init__(self, env, n, m, k, lay_num_list, Double_DQN, Duling_DQN, sess=None, gamma=0.8, epsilon=0.8):
         self.gamma = gamma
         self.epsilon = epsilon
-        #self.action_dim = env.action_space.n
-        #self.state_dim = env.observation_space.shape[0]
         self.action_dim = k
         self.state_dim = n*m*k
         self.lay_num_list = lay_num_list

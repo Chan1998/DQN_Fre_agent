@@ -4,19 +4,20 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 
-#设定超参数
-N = 100             #申请用户数量
-M = 25              #可用基站规模：基站以矩形分布，簇头数量为M，应为完全平方数
-K = 4            #可用基站频点
+# #设定超参数
+# N = 100             #申请用户数量
+# M = 25              #可用基站规模：基站以矩形分布，簇头数量为M，应为完全平方数
+# K = 4            #可用基站频点
+
 EPXILONG = 0.3      #设置贪心算法ε值
 
-D = 20             #簇直径，基站覆盖范围D/2（m）
-W_AP = 50         #簇头总功率100w，50dBm，W*N
+D = 50             #簇直径，基站覆盖范围D/2（m）
+W_AP = 40         #簇头总功率10w，50dBm，W*N
 #W = 33             #簇头用户传输功率dBm   （2000mw=2w）=33dBm
 #G = 0              #天线增益dB，#计算功率为传输功率乘天线增益，取全向天线，无增益
 F = 1000            #载波中心频率（MHz）
-B = 100             #载波带宽（MHz）
-P =  4               #dBm簇内通信功率假定为，距离为D/4的接收功率，为50-46,大约4dBm,3mW
+B = 10             #载波带宽（MHz）
+P =  -14               #dBm簇内通信功率假定为，距离为D/4的接收功率，为40-54,大约-14dBm,0.04mW
 n_0 = -174             #正常室温下高斯白噪功率谱密度No=10LogKTB，单位dBm/Hz
 n_1 = -94              #频带内噪声单位dBm
 
@@ -69,15 +70,15 @@ def I_caculate(n,m,k,Allocation_matrix,Location_matrix):
                     break  #干扰计算结束直接下一用户，print("用户结束")
     return I_matrix
 
-#计算分配矩阵传输数据量
+#计算分配矩阵传输数据量            输出单位为Gbps
 def R_caculate(n,Allocation_matrix,I_matrix):
     r = 0
     for i in range (n):
         if (np.sum(Allocation_matrix[i,:,:])==1):
             if I_matrix[i] == 0:
-                r += np.log2(1 + (10**(P*0.1))/(10**(n_1*0.1)))
+                r += B * 100 * np.log2(1 + (10**(P*0.1))/(10**(n_1*0.1)))
             else:
-                r += np.log2(1 + (10**(P*0.1))/(I_matrix[i] + 10**(n_1*0.1)))
+                r += B * 100 * np.log2(1 + (10**(P*0.1))/(I_matrix[i] + 10**(n_1*0.1)))
     return r
 
 #定义随机分配矩阵
@@ -228,143 +229,74 @@ def Allocation_matrix_show(n,m,k,Allocation_matrix):
     plt.show()
 
 
-def run_process(n,m,k,Location_matrix):
+def Other_method_process(n,m,k,Location_matrix):
     # print(Location_matrix)
-
     # 随机算法
-    True_random_Allocation_matrix, num0 = True_random_Allocation_def(n, m, k, Location_matrix)
-    Allocation_matrix0 = True_random_Allocation_matrix
-    I_matrix0 = I_caculate(n, m, k, Allocation_matrix0)
-    r0 = R_caculate(n, m, k, Allocation_matrix0, I_matrix0)
+    Allocation_matrix1, num1 = Random_Allocation_def(n, m, k, Location_matrix)
+    I_matrix1 = I_caculate(n, m, k, Allocation_matrix1, Location_matrix)
+    r1 = R_caculate(n, Allocation_matrix1, I_matrix1)
 
     # 传统算法
-    Random_Allocation_matrix, num1 = Random_Allocation_matrix_df(n, m, k, Location_matrix)
-    Allocation_matrix1 = Random_Allocation_matrix
-    I_matrix1 = I_caculate(n, m, k, Allocation_matrix1)
-    r1 = R_caculate(n, m, k, Allocation_matrix1, I_matrix1)
+    Allocation_matrix2, num2 = Usual_Allocation_matrix_def(n, m, k, Location_matrix)
+    I_matrix2 = I_caculate(n, m, k, Allocation_matrix2, Location_matrix)
+    r2 = R_caculate(n, Allocation_matrix2, I_matrix2)
 
     # 贪心算法
-    Allocation_matrix2, num2 = Greedy_Allocation_matrix(n, m, k, Location_matrix)
-    I_matrix2 = I_caculate(n, m, k, Allocation_matrix2)
-    # print(I_matrix)
-    r2 = R_caculate(n, m, k, Allocation_matrix2, I_matrix2)
-    # Location_matrix_show(Location_matrix)
-    # Allocation_matrix_show(N, M, K,Allocation_matrix)
+    Allocation_matrix3, num3 = Greedy_Allocation_matrix_def(n, m, k, Location_matrix)
+    I_matrix3 = I_caculate(n, m, k, Allocation_matrix3, Location_matrix)
+    r3 = R_caculate(n, Allocation_matrix3, I_matrix3)
 
     # ε—贪心算法
-    Allocation_matrix3, num3 = Epxilong_Greedy_Allocation_matrix(n, m, k, Location_matrix)
-    I_matrix3 = I_caculate(n, m, k, Allocation_matrix3)
-    # print(I_matrix)
-    r3 = R_caculate(n, m, k, Allocation_matrix3, I_matrix3)
-    return r0, r1, r2, r3, num0, num1, num2, num3
-'''   
-    #Location_matrix_show(Location_matrix)
-    print("参数设置为%d位申请者，%d个基站,每个基站可用频点为%d" % (N, M, K))
-    print("对于随机矩阵，对于%d位申请者，成功分配%d人,总传输速率为%g" % (N, num1, r1))
-    print("对于贪心矩阵，对于%d位申请者，成功分配%d人,总传输速率为%g" % (N, num2, r2))
-    print("对于改进贪心矩阵，对于%d位申请者，成功分配%d人,总传输速率为%g" % (N, num3, r3))
-    #Allocation_matrix_show(N, M, K, Allocation_matrix1)
-    #Allocation_matrix_show(N, M, K, Allocation_matrix2)
-    #Allocation_matrix_show(N, M, K, Allocation_matrix3)
-'''
-
-
-
-'''
-#定义主函数
-def main():
-
-    r11 = np.zeros(shape=(T),dtype=float)
-    r21 = np.zeros(shape=(T),dtype=float)
-    r31 = np.zeros(shape=(T),dtype=float)
-    r12 = np.zeros(shape=(T), dtype=float)
-    r22 = np.zeros(shape=(T), dtype=float)
-    r32 = np.zeros(shape=(T), dtype=float)
-    r13 = np.zeros(shape=(T),dtype=float)
-    r23 = np.zeros(shape=(T),dtype=float)
-    r33 = np.zeros(shape=(T),dtype=float)
-    # 频率实验
-    M = 10
-    N = 100
-    for k in range (T):
-        K = k+1
-        r1,r2,r3 = run_process(N, M, K)
-        r11[k] = r1
-        r21[k] = r2
-        r31[k] = r3
-
-    #基站实验
-    N = 100
-    K = 10
-    for m in range(T):
-        M = m + 3
-        r1, r2, r3 = run_process(N, M, K)
-        r12[m] = r1
-        r22[m] = r2
-        r32[m] = r3
-
-    # 申请人数实验
-    M = 4
-    K = 50
-    for n in range(T):
-        N = n + 3
-        r1, r2, r3 = run_process(N, M, K)
-        r13[n] = r1
-        r23[n] = r2
-        r33[n] = r3
-
-
-    k = np.arange(1,T+1)
-    plt.plot(k,np.log(r11+1e-5),color='r',linestyle=':',marker='^',label='random')
-    plt.plot(k,np.log(r21+1e-5),color='c',linestyle='-.',marker='o',label='Greedy')
-    plt.plot(k,np.log(r31+1e-5),color='y',linestyle='-',marker='*',label='Ep_Greedy')
-    plt.legend()
-    plt.xlabel("Frequence")
-    plt.ylabel("H")
-    plt.title("Frequence_influence")
-    #plt.savefig("150F")
-    plt.figure()
-    plt.plot(k, np.log(r12+1e-5),color='r',linestyle=':',marker='^',label='random')
-    plt.plot(k, np.log(r22+1e-5), color='c',linestyle='-.',marker='o',label='Greedy')
-    plt.plot(k, np.log(r32+1e-5),color='y',linestyle='-',marker='*',label='Ep_Greedy')
-    plt.legend()
-    plt.xlabel("Base")
-    plt.ylabel("H")
-    plt.title("Base_influence")
-    #plt.savefig("150B")
-    plt.figure()
-    plt.plot(k, np.log(r13+1e-5),color='r',linestyle=':',marker='^',label='random')
-    plt.plot(k, np.log(r23+1e-5), color='c',linestyle='-.',marker='o',label='Greedy')
-    plt.plot(k, np.log(r33+1e-5), color='y',linestyle='-',marker='*',label='Ep_Greedy')
-    plt.xlabel("Applaction")
-    plt.ylabel("H")
-    plt.title("Users_influence")
-    plt.legend()
-    #plt.savefig("150U")
-    plt.show()
-'''
-
+    Allocation_matrix4, num4 = Ep_Greedy_Allocation_matrix_def(n, m, k, Location_matrix)
+    I_matrix4 = I_caculate(n, m, k, Allocation_matrix4, Location_matrix)
+    r4 = R_caculate(n, Allocation_matrix4, I_matrix4)
+    return r1, r2, r3, r4, num1, num2, num3, num4
 
 if __name__ == "__main__":
-    Location_matrix = Location_matrix_df(N, M, K)
+    pass
+    # print(Other_method_process(N,M,K,Location_matrix))
+
+    # Allocation_matrix1,num1 = Random_Allocation_def(N, M, K, Location_matrix)
+    # I_matrix1 = I_caculate(N, M, K, Allocation_matrix1, Location_matrix)
+    # r1 = R_caculate(N,Allocation_matrix1,I_matrix1)
+    # print(num1,r1)
+    #
+    # Allocation_matrix2, num2 = Usual_Allocation_matrix_def(N, M, K, Location_matrix)
+    # I_matrix2 = I_caculate(N, M, K, Allocation_matrix2, Location_matrix)
+    # r2 = R_caculate(N, Allocation_matrix2, I_matrix2)
+    # print(num2, r2)
+    #
+    # Allocation_matrix3, num3 = Greedy_Allocation_matrix_def(N, M, K, Location_matrix)
+    # I_matrix3 = I_caculate(N, M, K, Allocation_matrix3, Location_matrix)
+    # r3 = R_caculate(N, Allocation_matrix3, I_matrix3)
+    # print(num3, r3)
+    #
+    # Allocation_matrix4, num4 = Ep_Greedy_Allocation_matrix_def(N, M, K, Location_matrix)
+    # I_matrix4 = I_caculate(N, M, K, Allocation_matrix4, Location_matrix)
+    # r4 = R_caculate(N, Allocation_matrix4, I_matrix4)
+    # print(num4, r4)
 
 
-    Allocation_matrix1,num1 = Random_Allocation_def(N, M, K, Location_matrix)
-    I_matrix1 = I_caculate(N, M, K, Allocation_matrix1, Location_matrix)
-    r1 = R_caculate(N,Allocation_matrix1,I_matrix1)
-    print(num1,r1)
+    #T = 10
 
-    Allocation_matrix2, num2 = Usual_Allocation_matrix_def(N, M, K, Location_matrix)
-    I_matrix2 = I_caculate(N, M, K, Allocation_matrix2, Location_matrix)
-    r2 = R_caculate(N, Allocation_matrix2, I_matrix2)
-    print(num2, r2)
 
-    Allocation_matrix3, num3 = Greedy_Allocation_matrix_def(N, M, K, Location_matrix)
-    I_matrix3 = I_caculate(N, M, K, Allocation_matrix3, Location_matrix)
-    r3 = R_caculate(N, Allocation_matrix3, I_matrix3)
-    print(num3, r3)
+    #r21 = np.zeros(shape=(T), dtype=float)
 
-    Allocation_matrix4, num4 = Ep_Greedy_Allocation_matrix_def(N, M, K, Location_matrix)
-    I_matrix4 = I_caculate(N, M, K, Allocation_matrix4, Location_matrix)
-    r4 = R_caculate(N, Allocation_matrix4, I_matrix4)
-    print(num4, r4)
+
+    # N = 200
+    # M = 49
+    # K = 5
+    # #r11 = np.zeros(shape=(N), dtype=float)
+    # Location_matrix = Location_matrix_df(N, M, K)
+    # Allocation_matrix1, num1 ,r11= Random_Allocation_def(N, M, K, Location_matrix)
+    #
+    #
+    # k = np.arange(1, N + 1)
+    # plt.plot(k, r11, color='b', label='R')
+    # #plt.plot(k, r21, color='c', linestyle='-.', marker='o', label='success_num')
+    # plt.legend()
+    # #plt.figure()
+    # plt.xlabel("Step(person)")
+    # plt.ylabel("H(Gbps)")
+    # plt.title("Success_num_influence")
+    # plt.show()
