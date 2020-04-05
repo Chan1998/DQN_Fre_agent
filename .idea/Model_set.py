@@ -12,12 +12,12 @@ import seaborn as sns
 EPXILONG = 0.3      #设置贪心算法ε值
 
 D = 50             #簇直径，基站覆盖范围D/2（m）
-W_AP = 40         #簇头总功率10w，50dBm，W*N
+W_AP = 30         #簇头总功率1w，30dBm，W*N
 #W = 33             #簇头用户传输功率dBm   （2000mw=2w）=33dBm
 #G = 0              #天线增益dB，#计算功率为传输功率乘天线增益，取全向天线，无增益
 F = 1000            #载波中心频率（MHz）
 B = 10             #载波带宽（MHz）
-P =  -14               #dBm簇内通信功率假定为，距离为D/4的接收功率，为40-54,大约-14dBm,0.04mW
+P =  -24               #dBm簇内通信功率假定为，距离为D/4的接收功率，为30-54,大约-24dBm,0.004mW
 n_0 = -174             #正常室温下高斯白噪功率谱密度No=10LogKTB，单位dBm/Hz
 n_1 = -94              #频带内噪声单位dBm
 
@@ -42,7 +42,7 @@ def Distance_caculate(m1, m2, m, d=D):
     return distance
 
 #随机生成簇头用户分配表
-def Location_matrix_df(n,m,k):
+def Location_matrix_def(n,m,k):
     Location_matrix = np.zeros(shape=(n,m,k),dtype=int)
     for i in range (n):
         Location_matrix[i,int(m * random.random()),0:k] = 1
@@ -252,8 +252,8 @@ def Other_method_process(n,m,k,Location_matrix):
     r4 = R_caculate(n, Allocation_matrix4, I_matrix4)
     return r1, r2, r3, r4, num1, num2, num3, num4
 
-if __name__ == "__main__":
-    pass
+#  if __name__ == "__main__":
+    #pass
     # print(Other_method_process(N,M,K,Location_matrix))
 
     # Allocation_matrix1,num1 = Random_Allocation_def(N, M, K, Location_matrix)
