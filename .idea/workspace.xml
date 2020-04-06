@@ -2,10 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5e623a55-375f-459a-a13e-d1a9cb6b61f1" name="默认" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/Fre_env.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1586070331.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1586070400.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1586070536.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1586070928.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1586071688.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1586072030.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1586072076.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1586072111.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1586072352.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1586072433.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1586072537.DESKTOP-ALU59QM" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/DQN/summaries/events.out.tfevents.1586072824.DESKTOP-ALU59QM" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/DQN_agent.py" afterPath="$PROJECT_DIR$/.idea/DQN_agent.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/Model_set.py" afterPath="$PROJECT_DIR$/.idea/Model_set.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -15,7 +24,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/DQN_agent_Fre$DQN_agent.coverage" NAME="DQN_agent Coverage Results" MODIFIED="1586072812011" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/.idea" />
+    <SUITE FILE_PATH="coverage/DQN_agent_Fre$DQN_agent.coverage" NAME="DQN_agent Coverage Results" MODIFIED="1586158469005" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/.idea" />
     <SUITE FILE_PATH="coverage/DQN_agent_Fre$Other_method.coverage" NAME="Other_method Coverage Results" MODIFIED="1585812642264" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/.idea" />
     <SUITE FILE_PATH="coverage/DQN_agent_Fre$Fre_env.coverage" NAME="Fre_env Coverage Results" MODIFIED="1583044258402" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/.idea" />
     <SUITE FILE_PATH="coverage/DQN_agent_Fre$DQN_Fre_Main.coverage" NAME="DQN_Fre_Main Coverage Results" MODIFIED="1585634512202" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/.idea" />
@@ -28,7 +37,7 @@
         <entry file="file://$PROJECT_DIR$/.idea/DQN_Fre_Main.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="414">
-              <caret line="657" column="45" lean-forward="true" selection-start-line="655" selection-start-column="6" selection-end-line="657" selection-end-column="45" />
+              <caret line="657" column="45" lean-forward="false" selection-start-line="655" selection-start-column="6" selection-end-line="657" selection-end-column="45" />
               <folding>
                 <element signature="e#0#21#0" expanded="true" />
                 <element signature="e#479#510#0" expanded="false" />
@@ -45,20 +54,21 @@
       <file leaf-file-name="DQN_agent.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/.idea/DQN_agent.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-920">
-              <caret line="182" column="15" lean-forward="false" selection-start-line="182" selection-start-column="15" selection-end-line="182" selection-end-column="15" />
+            <state relative-caret-position="657">
+              <caret line="337" column="0" lean-forward="true" selection-start-line="337" selection-start-column="0" selection-end-line="337" selection-end-column="0" />
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
-                <element signature="e#374#5166#0" expanded="false" />
-                <element signature="e#489#876#0" expanded="false" />
-                <element signature="e#1012#1687#0" expanded="false" />
-                <element signature="e#1754#2925#0" expanded="false" />
-                <element signature="e#2991#4253#0" expanded="false" />
-                <element signature="e#4306#4690#0" expanded="false" />
-                <element signature="e#4752#5055#0" expanded="false" />
-                <element signature="e#5201#5434#0" expanded="false" />
-                <element signature="e#5572#7418#0" expanded="false" />
-                <marker date="1586072525172" expanded="false" signature="5085:5164" ph="..." />
+                <element signature="e#488#875#0" expanded="false" />
+                <element signature="e#1011#1686#0" expanded="false" />
+                <element signature="e#1753#2924#0" expanded="false" />
+                <element signature="e#4331#4715#0" expanded="false" />
+                <element signature="e#4773#5024#0" expanded="false" />
+                <element signature="e#5086#5389#0" expanded="false" />
+                <element signature="e#5535#5768#0" expanded="false" />
+                <element signature="e#5906#7752#0" expanded="false" />
+                <element signature="e#7867#8226#0" expanded="false" />
+                <element signature="e#8599#12100#0" expanded="false" />
+                <element signature="e#12157#12757#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -67,8 +77,8 @@
       <file leaf-file-name="Model_set.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/.idea/Model_set.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-520">
-              <caret line="44" column="23" lean-forward="true" selection-start-line="44" selection-start-column="4" selection-end-line="44" selection-end-column="23" />
+            <state relative-caret-position="92">
+              <caret line="44" column="23" lean-forward="false" selection-start-line="44" selection-start-column="4" selection-end-line="44" selection-end-column="23" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
                 <element signature="e#766#947#0" expanded="false" />
@@ -541,14 +551,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.idea/Fre_env.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="414">
-          <caret line="31" column="17" lean-forward="false" selection-start-line="31" selection-start-column="17" selection-end-line="31" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/Fre_env.py" />
     <entry file="file://$PROJECT_DIR$/.idea/Model_set.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1288">
@@ -577,16 +580,17 @@
           <caret line="36" column="71" lean-forward="false" selection-start-line="36" selection-start-column="71" selection-end-line="36" selection-end-column="71" />
           <folding>
             <element signature="e#0#23#0" expanded="true" />
-            <element signature="e#374#5166#0" expanded="false" />
-            <element signature="e#489#876#0" expanded="false" />
-            <element signature="e#1012#1687#0" expanded="false" />
-            <element signature="e#1754#2925#0" expanded="false" />
-            <element signature="e#2991#4253#0" expanded="false" />
-            <element signature="e#4306#4690#0" expanded="false" />
-            <element signature="e#4752#5055#0" expanded="false" />
-            <element signature="e#5201#5434#0" expanded="false" />
-            <element signature="e#5572#7418#0" expanded="false" />
-            <marker date="1586072525172" expanded="false" signature="5085:5164" ph="..." />
+            <element signature="e#488#875#0" expanded="false" />
+            <element signature="e#1011#1686#0" expanded="false" />
+            <element signature="e#1753#2924#0" expanded="false" />
+            <element signature="e#4331#4715#0" expanded="false" />
+            <element signature="e#4773#5024#0" expanded="false" />
+            <element signature="e#5086#5389#0" expanded="false" />
+            <element signature="e#5535#5768#0" expanded="false" />
+            <element signature="e#5906#7752#0" expanded="false" />
+            <element signature="e#7867#8226#0" expanded="false" />
+            <element signature="e#8599#12100#0" expanded="false" />
+            <element signature="e#12157#12757#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -607,14 +611,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.idea/Fre_env.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="414">
-          <caret line="31" column="17" lean-forward="false" selection-start-line="31" selection-start-column="17" selection-end-line="31" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/Fre_env.py" />
     <entry file="file://$PROJECT_DIR$/.idea/Model_set.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1288">
@@ -643,16 +640,17 @@
           <caret line="36" column="71" lean-forward="false" selection-start-line="36" selection-start-column="71" selection-end-line="36" selection-end-column="71" />
           <folding>
             <element signature="e#0#23#0" expanded="true" />
-            <element signature="e#374#5166#0" expanded="false" />
-            <element signature="e#489#876#0" expanded="false" />
-            <element signature="e#1012#1687#0" expanded="false" />
-            <element signature="e#1754#2925#0" expanded="false" />
-            <element signature="e#2991#4253#0" expanded="false" />
-            <element signature="e#4306#4690#0" expanded="false" />
-            <element signature="e#4752#5055#0" expanded="false" />
-            <element signature="e#5201#5434#0" expanded="false" />
-            <element signature="e#5572#7418#0" expanded="false" />
-            <marker date="1586072525172" expanded="false" signature="5085:5164" ph="..." />
+            <element signature="e#488#875#0" expanded="false" />
+            <element signature="e#1011#1686#0" expanded="false" />
+            <element signature="e#1753#2924#0" expanded="false" />
+            <element signature="e#4331#4715#0" expanded="false" />
+            <element signature="e#4773#5024#0" expanded="false" />
+            <element signature="e#5086#5389#0" expanded="false" />
+            <element signature="e#5535#5768#0" expanded="false" />
+            <element signature="e#5906#7752#0" expanded="false" />
+            <element signature="e#7867#8226#0" expanded="false" />
+            <element signature="e#8599#12100#0" expanded="false" />
+            <element signature="e#12157#12757#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -673,14 +671,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.idea/Fre_env.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="621">
-          <caret line="91" column="3" lean-forward="true" selection-start-line="91" selection-start-column="3" selection-end-line="91" selection-end-column="3" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/Fre_env.py" />
     <entry file="file://$PROJECT_DIR$/.idea/Model_set.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="943">
@@ -709,16 +700,17 @@
           <caret line="36" column="71" lean-forward="false" selection-start-line="36" selection-start-column="71" selection-end-line="36" selection-end-column="71" />
           <folding>
             <element signature="e#0#23#0" expanded="true" />
-            <element signature="e#374#5166#0" expanded="false" />
-            <element signature="e#489#876#0" expanded="false" />
-            <element signature="e#1012#1687#0" expanded="false" />
-            <element signature="e#1754#2925#0" expanded="false" />
-            <element signature="e#2991#4253#0" expanded="false" />
-            <element signature="e#4306#4690#0" expanded="false" />
-            <element signature="e#4752#5055#0" expanded="false" />
-            <element signature="e#5201#5434#0" expanded="false" />
-            <element signature="e#5572#7418#0" expanded="false" />
-            <marker date="1586072525172" expanded="false" signature="5085:5164" ph="..." />
+            <element signature="e#488#875#0" expanded="false" />
+            <element signature="e#1011#1686#0" expanded="false" />
+            <element signature="e#1753#2924#0" expanded="false" />
+            <element signature="e#4331#4715#0" expanded="false" />
+            <element signature="e#4773#5024#0" expanded="false" />
+            <element signature="e#5086#5389#0" expanded="false" />
+            <element signature="e#5535#5768#0" expanded="false" />
+            <element signature="e#5906#7752#0" expanded="false" />
+            <element signature="e#7867#8226#0" expanded="false" />
+            <element signature="e#8599#12100#0" expanded="false" />
+            <element signature="e#12157#12757#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -739,14 +731,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.idea/Fre_env.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="483">
-          <caret line="67" column="53" lean-forward="false" selection-start-line="67" selection-start-column="4" selection-end-line="67" selection-end-column="53" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/Fre_env.py" />
     <entry file="file://$PROJECT_DIR$/.idea/Model_set.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="943">
@@ -775,16 +760,17 @@
           <caret line="36" column="71" lean-forward="false" selection-start-line="36" selection-start-column="71" selection-end-line="36" selection-end-column="71" />
           <folding>
             <element signature="e#0#23#0" expanded="true" />
-            <element signature="e#374#5166#0" expanded="false" />
-            <element signature="e#489#876#0" expanded="false" />
-            <element signature="e#1012#1687#0" expanded="false" />
-            <element signature="e#1754#2925#0" expanded="false" />
-            <element signature="e#2991#4253#0" expanded="false" />
-            <element signature="e#4306#4690#0" expanded="false" />
-            <element signature="e#4752#5055#0" expanded="false" />
-            <element signature="e#5201#5434#0" expanded="false" />
-            <element signature="e#5572#7418#0" expanded="false" />
-            <marker date="1586072525172" expanded="false" signature="5085:5164" ph="..." />
+            <element signature="e#488#875#0" expanded="false" />
+            <element signature="e#1011#1686#0" expanded="false" />
+            <element signature="e#1753#2924#0" expanded="false" />
+            <element signature="e#4331#4715#0" expanded="false" />
+            <element signature="e#4773#5024#0" expanded="false" />
+            <element signature="e#5086#5389#0" expanded="false" />
+            <element signature="e#5535#5768#0" expanded="false" />
+            <element signature="e#5906#7752#0" expanded="false" />
+            <element signature="e#7867#8226#0" expanded="false" />
+            <element signature="e#8599#12100#0" expanded="false" />
+            <element signature="e#12157#12757#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -805,14 +791,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.idea/Fre_env.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1541">
-          <caret line="67" column="53" lean-forward="false" selection-start-line="67" selection-start-column="4" selection-end-line="67" selection-end-column="53" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/Fre_env.py" />
     <entry file="file://$PROJECT_DIR$/.idea/Model_set.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="943">
@@ -841,16 +820,17 @@
           <caret line="69" column="55" lean-forward="false" selection-start-line="69" selection-start-column="55" selection-end-line="69" selection-end-column="55" />
           <folding>
             <element signature="e#0#23#0" expanded="true" />
-            <element signature="e#374#5166#0" expanded="false" />
-            <element signature="e#489#876#0" expanded="false" />
-            <element signature="e#1012#1687#0" expanded="false" />
-            <element signature="e#1754#2925#0" expanded="false" />
-            <element signature="e#2991#4253#0" expanded="false" />
-            <element signature="e#4306#4690#0" expanded="false" />
-            <element signature="e#4752#5055#0" expanded="false" />
-            <element signature="e#5201#5434#0" expanded="false" />
-            <element signature="e#5572#7418#0" expanded="false" />
-            <marker date="1586072525172" expanded="false" signature="5085:5164" ph="..." />
+            <element signature="e#488#875#0" expanded="false" />
+            <element signature="e#1011#1686#0" expanded="false" />
+            <element signature="e#1753#2924#0" expanded="false" />
+            <element signature="e#4331#4715#0" expanded="false" />
+            <element signature="e#4773#5024#0" expanded="false" />
+            <element signature="e#5086#5389#0" expanded="false" />
+            <element signature="e#5535#5768#0" expanded="false" />
+            <element signature="e#5906#7752#0" expanded="false" />
+            <element signature="e#7867#8226#0" expanded="false" />
+            <element signature="e#8599#12100#0" expanded="false" />
+            <element signature="e#12157#12757#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -861,28 +841,22 @@
           <caret line="34" column="28" lean-forward="false" selection-start-line="34" selection-start-column="28" selection-end-line="34" selection-end-column="28" />
           <folding>
             <element signature="e#0#23#0" expanded="true" />
-            <element signature="e#374#5166#0" expanded="false" />
-            <element signature="e#489#876#0" expanded="false" />
-            <element signature="e#1012#1687#0" expanded="false" />
-            <element signature="e#1754#2925#0" expanded="false" />
-            <element signature="e#2991#4253#0" expanded="false" />
-            <element signature="e#4306#4690#0" expanded="false" />
-            <element signature="e#4752#5055#0" expanded="false" />
-            <element signature="e#5201#5434#0" expanded="false" />
-            <element signature="e#5572#7418#0" expanded="false" />
-            <marker date="1586072525172" expanded="false" signature="5085:5164" ph="..." />
+            <element signature="e#488#875#0" expanded="false" />
+            <element signature="e#1011#1686#0" expanded="false" />
+            <element signature="e#1753#2924#0" expanded="false" />
+            <element signature="e#4331#4715#0" expanded="false" />
+            <element signature="e#4773#5024#0" expanded="false" />
+            <element signature="e#5086#5389#0" expanded="false" />
+            <element signature="e#5535#5768#0" expanded="false" />
+            <element signature="e#5906#7752#0" expanded="false" />
+            <element signature="e#7867#8226#0" expanded="false" />
+            <element signature="e#8599#12100#0" expanded="false" />
+            <element signature="e#12157#12757#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.idea/Fre_env.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="690">
-          <caret line="67" column="53" lean-forward="false" selection-start-line="67" selection-start-column="4" selection-end-line="67" selection-end-column="53" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/Fre_env.py" />
     <entry file="file://$PROJECT_DIR$/.idea/Model_set.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="943">
@@ -937,14 +911,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.idea/Fre_env.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="851">
-          <caret line="41" column="17" lean-forward="false" selection-start-line="41" selection-start-column="17" selection-end-line="41" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/Fre_env.py" />
     <entry file="file://$PROJECT_DIR$/.idea/Model_set.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2783">
@@ -973,16 +940,17 @@
           <caret line="67" column="4" lean-forward="false" selection-start-line="67" selection-start-column="4" selection-end-line="67" selection-end-column="4" />
           <folding>
             <element signature="e#0#23#0" expanded="true" />
-            <element signature="e#374#5166#0" expanded="false" />
-            <element signature="e#489#876#0" expanded="false" />
-            <element signature="e#1012#1687#0" expanded="false" />
-            <element signature="e#1754#2925#0" expanded="false" />
-            <element signature="e#2991#4253#0" expanded="false" />
-            <element signature="e#4306#4690#0" expanded="false" />
-            <element signature="e#4752#5055#0" expanded="false" />
-            <element signature="e#5201#5434#0" expanded="false" />
-            <element signature="e#5572#7418#0" expanded="false" />
-            <marker date="1586072525172" expanded="false" signature="5085:5164" ph="..." />
+            <element signature="e#488#875#0" expanded="false" />
+            <element signature="e#1011#1686#0" expanded="false" />
+            <element signature="e#1753#2924#0" expanded="false" />
+            <element signature="e#4331#4715#0" expanded="false" />
+            <element signature="e#4773#5024#0" expanded="false" />
+            <element signature="e#5086#5389#0" expanded="false" />
+            <element signature="e#5535#5768#0" expanded="false" />
+            <element signature="e#5906#7752#0" expanded="false" />
+            <element signature="e#7867#8226#0" expanded="false" />
+            <element signature="e#8599#12100#0" expanded="false" />
+            <element signature="e#12157#12757#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1003,14 +971,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.idea/Fre_env.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="851">
-          <caret line="41" column="17" lean-forward="false" selection-start-line="41" selection-start-column="17" selection-end-line="41" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/Fre_env.py" />
     <entry file="file://$PROJECT_DIR$/.idea/Model_set.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2783">
@@ -1039,16 +1000,17 @@
           <caret line="16" column="11" lean-forward="false" selection-start-line="16" selection-start-column="11" selection-end-line="16" selection-end-column="11" />
           <folding>
             <element signature="e#0#23#0" expanded="true" />
-            <element signature="e#374#5166#0" expanded="false" />
-            <element signature="e#489#876#0" expanded="false" />
-            <element signature="e#1012#1687#0" expanded="false" />
-            <element signature="e#1754#2925#0" expanded="false" />
-            <element signature="e#2991#4253#0" expanded="false" />
-            <element signature="e#4306#4690#0" expanded="false" />
-            <element signature="e#4752#5055#0" expanded="false" />
-            <element signature="e#5201#5434#0" expanded="false" />
-            <element signature="e#5572#7418#0" expanded="false" />
-            <marker date="1586072525172" expanded="false" signature="5085:5164" ph="..." />
+            <element signature="e#488#875#0" expanded="false" />
+            <element signature="e#1011#1686#0" expanded="false" />
+            <element signature="e#1753#2924#0" expanded="false" />
+            <element signature="e#4331#4715#0" expanded="false" />
+            <element signature="e#4773#5024#0" expanded="false" />
+            <element signature="e#5086#5389#0" expanded="false" />
+            <element signature="e#5535#5768#0" expanded="false" />
+            <element signature="e#5906#7752#0" expanded="false" />
+            <element signature="e#7867#8226#0" expanded="false" />
+            <element signature="e#8599#12100#0" expanded="false" />
+            <element signature="e#12157#12757#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1069,14 +1031,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.idea/Fre_env.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="644">
-          <caret line="62" column="34" lean-forward="false" selection-start-line="62" selection-start-column="34" selection-end-line="62" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/Fre_env.py" />
     <entry file="file://$PROJECT_DIR$/.idea/Model_set.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2783">
@@ -1105,16 +1060,17 @@
           <caret line="26" column="21" lean-forward="false" selection-start-line="26" selection-start-column="21" selection-end-line="26" selection-end-column="21" />
           <folding>
             <element signature="e#0#23#0" expanded="true" />
-            <element signature="e#374#5166#0" expanded="false" />
-            <element signature="e#489#876#0" expanded="false" />
-            <element signature="e#1012#1687#0" expanded="false" />
-            <element signature="e#1754#2925#0" expanded="false" />
-            <element signature="e#2991#4253#0" expanded="false" />
-            <element signature="e#4306#4690#0" expanded="false" />
-            <element signature="e#4752#5055#0" expanded="false" />
-            <element signature="e#5201#5434#0" expanded="false" />
-            <element signature="e#5572#7418#0" expanded="false" />
-            <marker date="1586072525172" expanded="false" signature="5085:5164" ph="..." />
+            <element signature="e#488#875#0" expanded="false" />
+            <element signature="e#1011#1686#0" expanded="false" />
+            <element signature="e#1753#2924#0" expanded="false" />
+            <element signature="e#4331#4715#0" expanded="false" />
+            <element signature="e#4773#5024#0" expanded="false" />
+            <element signature="e#5086#5389#0" expanded="false" />
+            <element signature="e#5535#5768#0" expanded="false" />
+            <element signature="e#5906#7752#0" expanded="false" />
+            <element signature="e#7867#8226#0" expanded="false" />
+            <element signature="e#8599#12100#0" expanded="false" />
+            <element signature="e#12157#12757#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1141,28 +1097,22 @@
           <caret line="15" column="11" lean-forward="false" selection-start-line="15" selection-start-column="11" selection-end-line="15" selection-end-column="11" />
           <folding>
             <element signature="e#0#23#0" expanded="true" />
-            <element signature="e#374#5166#0" expanded="false" />
-            <element signature="e#489#876#0" expanded="false" />
-            <element signature="e#1012#1687#0" expanded="false" />
-            <element signature="e#1754#2925#0" expanded="false" />
-            <element signature="e#2991#4253#0" expanded="false" />
-            <element signature="e#4306#4690#0" expanded="false" />
-            <element signature="e#4752#5055#0" expanded="false" />
-            <element signature="e#5201#5434#0" expanded="false" />
-            <element signature="e#5572#7418#0" expanded="false" />
-            <marker date="1586072525172" expanded="false" signature="5085:5164" ph="..." />
+            <element signature="e#488#875#0" expanded="false" />
+            <element signature="e#1011#1686#0" expanded="false" />
+            <element signature="e#1753#2924#0" expanded="false" />
+            <element signature="e#4331#4715#0" expanded="false" />
+            <element signature="e#4773#5024#0" expanded="false" />
+            <element signature="e#5086#5389#0" expanded="false" />
+            <element signature="e#5535#5768#0" expanded="false" />
+            <element signature="e#5906#7752#0" expanded="false" />
+            <element signature="e#7867#8226#0" expanded="false" />
+            <element signature="e#8599#12100#0" expanded="false" />
+            <element signature="e#12157#12757#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.idea/Fre_env.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="46">
-          <caret line="3" column="13" lean-forward="false" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/Fre_env.py" />
     <entry file="file://$PROJECT_DIR$/.idea/DQN_Fre_Main.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1185,28 +1135,22 @@
           <caret line="25" column="30" lean-forward="false" selection-start-line="25" selection-start-column="30" selection-end-line="25" selection-end-column="30" />
           <folding>
             <element signature="e#0#23#0" expanded="true" />
-            <element signature="e#374#5166#0" expanded="false" />
-            <element signature="e#489#876#0" expanded="false" />
-            <element signature="e#1012#1687#0" expanded="false" />
-            <element signature="e#1754#2925#0" expanded="false" />
-            <element signature="e#2991#4253#0" expanded="false" />
-            <element signature="e#4306#4690#0" expanded="false" />
-            <element signature="e#4752#5055#0" expanded="false" />
-            <element signature="e#5201#5434#0" expanded="false" />
-            <element signature="e#5572#7418#0" expanded="false" />
-            <marker date="1586072525172" expanded="false" signature="5085:5164" ph="..." />
+            <element signature="e#488#875#0" expanded="false" />
+            <element signature="e#1011#1686#0" expanded="false" />
+            <element signature="e#1753#2924#0" expanded="false" />
+            <element signature="e#4331#4715#0" expanded="false" />
+            <element signature="e#4773#5024#0" expanded="false" />
+            <element signature="e#5086#5389#0" expanded="false" />
+            <element signature="e#5535#5768#0" expanded="false" />
+            <element signature="e#5906#7752#0" expanded="false" />
+            <element signature="e#7867#8226#0" expanded="false" />
+            <element signature="e#8599#12100#0" expanded="false" />
+            <element signature="e#12157#12757#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.idea/Fre_env.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="18" column="19" lean-forward="true" selection-start-line="18" selection-start-column="19" selection-end-line="18" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/Fre_env.py" />
     <entry file="file://F:/anaconda/envs/tensorflow1/Lib/site-packages/tensorflow/python/client/session.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1134">
@@ -1235,18 +1179,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.idea/Fre_env.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="657">
-          <caret line="111" column="70" lean-forward="true" selection-start-line="100" selection-start-column="0" selection-end-line="111" selection-end-column="70" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/Fre_env.py" />
     <entry file="file://$PROJECT_DIR$/.idea/Model_set.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-520">
-          <caret line="44" column="23" lean-forward="true" selection-start-line="44" selection-start-column="4" selection-end-line="44" selection-end-column="23" />
+        <state relative-caret-position="92">
+          <caret line="44" column="23" lean-forward="false" selection-start-line="44" selection-start-column="4" selection-end-line="44" selection-end-column="23" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
             <element signature="e#766#947#0" expanded="false" />
@@ -1268,7 +1205,7 @@
     <entry file="file://$PROJECT_DIR$/.idea/DQN_Fre_Main.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="414">
-          <caret line="657" column="45" lean-forward="true" selection-start-line="655" selection-start-column="6" selection-end-line="657" selection-end-column="45" />
+          <caret line="657" column="45" lean-forward="false" selection-start-line="655" selection-start-column="6" selection-end-line="657" selection-end-column="45" />
           <folding>
             <element signature="e#0#21#0" expanded="true" />
             <element signature="e#479#510#0" expanded="false" />
@@ -1283,20 +1220,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/.idea/DQN_agent.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-920">
-          <caret line="182" column="15" lean-forward="false" selection-start-line="182" selection-start-column="15" selection-end-line="182" selection-end-column="15" />
+        <state relative-caret-position="657">
+          <caret line="337" column="0" lean-forward="true" selection-start-line="337" selection-start-column="0" selection-end-line="337" selection-end-column="0" />
           <folding>
             <element signature="e#0#23#0" expanded="true" />
-            <element signature="e#374#5166#0" expanded="false" />
-            <element signature="e#489#876#0" expanded="false" />
-            <element signature="e#1012#1687#0" expanded="false" />
-            <element signature="e#1754#2925#0" expanded="false" />
-            <element signature="e#2991#4253#0" expanded="false" />
-            <element signature="e#4306#4690#0" expanded="false" />
-            <element signature="e#4752#5055#0" expanded="false" />
-            <element signature="e#5201#5434#0" expanded="false" />
-            <element signature="e#5572#7418#0" expanded="false" />
-            <marker date="1586072525172" expanded="false" signature="5085:5164" ph="..." />
+            <element signature="e#488#875#0" expanded="false" />
+            <element signature="e#1011#1686#0" expanded="false" />
+            <element signature="e#1753#2924#0" expanded="false" />
+            <element signature="e#4331#4715#0" expanded="false" />
+            <element signature="e#4773#5024#0" expanded="false" />
+            <element signature="e#5086#5389#0" expanded="false" />
+            <element signature="e#5535#5768#0" expanded="false" />
+            <element signature="e#5906#7752#0" expanded="false" />
+            <element signature="e#7867#8226#0" expanded="false" />
+            <element signature="e#8599#12100#0" expanded="false" />
+            <element signature="e#12157#12757#0" expanded="false" />
           </folding>
         </state>
       </provider>

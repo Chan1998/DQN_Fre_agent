@@ -4,7 +4,6 @@ import collections
 import random
 import Model_set as model
 import tensorflow.contrib.layers as layers
-
 import matplotlib.pyplot as plt
 
 #MEMORY_SIZE = 10000
@@ -92,9 +91,10 @@ class DeepQNetwork():
         target = reward + self.gamma * q_target_best_mask
         loss, _ = self.sess.run([self.loss, self.train_op],
                                 feed_dict={self.inputs_q: state, self.target: target, self.action: action})
+        return loss
         # chose action
 
-    def chose_action(self, current_state):
+    def chose_action_train(self, current_state):
         current_state = current_state[np.newaxis, :]  # *** array dim: (xx,)  --> (1 , xx) ***
         q = self.sess.run(self.q_value, feed_dict={self.inputs_q: current_state})
         # e-greedy
@@ -103,6 +103,13 @@ class DeepQNetwork():
         else:
             action_chosen = np.argmax(q)
 
+        return action_chosen
+
+    def chose_action_test(self, current_state):
+        current_state = current_state[np.newaxis, :]  # *** array dim: (xx,)  --> (1 , xx) ***
+        q = self.sess.run(self.q_value, feed_dict={self.inputs_q: current_state})
+        print(q)
+        action_chosen = np.argmax(q)
         return action_chosen
 
     # upadate parmerters
@@ -180,110 +187,152 @@ def DQN_step(success_num,reward_all,arg_num,DQN_Allocation_matrix,action,Locatio
     return success_num,next_state,reward,DQN_Allocation_matrix
 
 
-Apply_num = 100
-N = Apply_num
+
+N = 100
 M = 25
 K = 5
 
 
-
-#
-# 85 193906.839116
-# 89 198638.1910142754
-
-# #DQN测试代码
 # #智能体变量
 MEMORY_SIZE = 200
 EPISODES = 1            #不同用户分布情况下重复
-MAX_STEP = 500
-BATCH_SIZE = 1       #单次训练量大小
-UPDATE_PERIOD = 20  # update target network parameters目标网络随训练步数更新周期
-decay_epsilon_STEPS = 100       #降低探索概率次数
+MAX_STEP = 5000
+BATCH_SIZE = 5       #单次训练量大小
+UPDATE_PERIOD = 50  # update target network parameters目标网络随训练步数更新周期
+decay_epsilon_STEPS = 50       #降低探索概率次数
 Lay_num_list = [4096, 2048, 1024, 256, 128, 64, 32, 16] #隐藏层节点设置
 
-t2 = []
-
-if __name__ == "__main__":
+# #DQN训练，测试代码
+def DQN_process(Location_matrix, n, m, k):
     env = model
     tf.reset_default_graph()
     memory = []
     Transition = collections.namedtuple("Transition", ["state", "action", "reward", "next_state"])
     with tf.Session() as sess:
         # DQN智能体
-        DQN = DeepQNetwork(env, N, M, K, Lay_num_list, True, True, sess)  # Double,Duling= 1
+        DQN = DeepQNetwork(env, n, m, k, Lay_num_list,True, True, sess)  # Double,Duling= 1
+
+        # 训练
         update_iter = 0
-        step_his = []
+        reward_train_list = []
+        loss_list = []
         # for episode in range(EPISODES):            #这里取消循环，后面如果加上别忘了缩进
-        state, Location_matrix, DQN_Allocation_matrix = reset(N, M, K)
+        state, _, DQN_Allocation_matrix = reset(n, m, k)
         reward_all = 0
         arg_num = 0
         success_num = 0
         print("网络训练中....")
-        # training
-        for step in range(MAX_STEP):  # 训练
-            action = DQN.chose_action(state)
-            # next_state, reward, done, _ = env.step(action)
+        for step in range(MAX_STEP):
+            action = DQN.chose_action_train(state)            #通过网络选择对应动作
+            #进行环境交互
             success_num, next_state, reward, DQN_Allocation_matrix = DQN_step \
                          (success_num,reward_all,arg_num,DQN_Allocation_matrix,action,Location_matrix,N,M,K)
             reward_all += reward
             arg_num += 1
-            if len(memory) > MEMORY_SIZE:
+            if len(memory) > MEMORY_SIZE:       #超出长度删除最初经验
                 memory.pop(0)
-            memory.append(Transition(state, action, reward, next_state))
+            memory.append(Transition(state, action, reward, next_state))        #储存经验
 
-            if len(memory) > BATCH_SIZE * 4:
-                batch_transition = random.sample(memory, BATCH_SIZE)
-                # ***
+            if len(memory) > BATCH_SIZE :    #达到训练要求
+                batch_transition = random.sample(memory, BATCH_SIZE)        #开始随机抽取
                 batch_state, batch_action, batch_reward, batch_next_state = map(np.array,
                                                                                 zip(*batch_transition))
-                DQN.train(state=batch_state,
+                loss = DQN.train(state=batch_state,            #进行训练
                           reward=batch_reward,
                           action=batch_action,
                           state_next=batch_next_state
                           )
                 update_iter += 1
-
+                loss_list.append(loss)
+                if step % 100 == 0:
+                    print(loss)
             if update_iter % UPDATE_PERIOD == 0:
-                DQN.update_prmt()
-                print("[after {}tring,][success_num is{}][reward_all = {} ]".format(step, success_num, reward_all))
+                DQN.update_prmt()                   #更新目标Q网络
+
+            if step % (MAX_STEP/10)==1 :
+                print("[after {}tring,][chose action is{}][success_num is{}][reward_all = {} ]"
+                      .format(step, action, success_num, reward_all))
 
             if update_iter % decay_epsilon_STEPS == 0:
-                DQN.decay_epsilon()
+                DQN.decay_epsilon()                 #随训练进行减小探索力度
 
-            if arg_num == Apply_num:
+            if arg_num == n:
                 arg_num = 0
 
             state = next_state
-            t2.append(reward_all)
+            reward_train_list.append(reward_all)
+        print("训练结束")
+        print("[after {}tring,][success_num is{}][reward_all = {} ]".format(MAX_STEP, success_num, reward_all))
 
-
-#环境测试代码
-state,_,DQN_Allocation_matrix= reset(N,M,K)
-reward_all = 0
-#print(np.shape(state))
-arg_num = 0
-success_num = 0
-t1 = []
-
-for i in range (Apply_num*5):
-    #print(arg_num)
-    action = int(K*random.random())
-    success_num,next_state,reward,DQN_Allocation_matrix= DQN_step\
-        (success_num,reward_all,arg_num,DQN_Allocation_matrix,action,Location_matrix,N,M,K)
-    reward_all += reward
-    t1.append(reward_all)
-    arg_num += 1
-    if arg_num == Apply_num:
+        # 测试
+        print("网络测试中....")
+        # for episode in range(EPISODES):            #这里取消循环，后面如果加上别忘了缩进
+        state, _, DQN_Allocation_matrix = reset(n, m, k)
+        reward_test_list = []
+        reward_all = 0
         arg_num = 0
-    next_state = np.reshape(DQN_Allocation_matrix, [1, N*M*K])
-print(success_num,reward_all)
+        success_num = 0
+        for step in range(n):
+            action = DQN.chose_action_test(state)  # 通过网络选择对应动作
+            # 进行环境交互
+            success_num, next_state, reward, DQN_Allocation_matrix = DQN_step \
+                (success_num, reward_all, arg_num, DQN_Allocation_matrix, action, Location_matrix, N, M, K)
+            reward_all += reward
+            arg_num += 1
+            print("[for {}User,][given channl is{}][reward_all = {} ]".format(step, action, reward_all))
+            state = next_state
+            reward_test_list.append(reward_all)
+        print(success_num,reward_all)
+    return reward_train_list,reward_test_list,loss_list
 
 
-c = np.arange(0,len(t1))
-plt.plot(c,t1,'b','-',label = 'Random')
-plt.plot(c,t2,'r','-',label = 'DQN')
+
+def Random_process(Location_matrix,n,m,k,Times):
+    Random_reward_list = []
+    state, _, DQN_Allocation_matrix = reset(n,m,k)
+    reward_all = 0
+    arg_num = 0
+    success_num = 0
+    for i in range(n * Times):
+        #print(arg_num)
+        action = int(K*random.random())
+        success_num,next_state,reward,DQN_Allocation_matrix= DQN_step\
+            (success_num,reward_all,arg_num,DQN_Allocation_matrix,action,Location_matrix,n,m,k)
+        reward_all += reward
+        Random_reward_list.append(reward_all)
+        arg_num += 1
+        if arg_num == n:
+            arg_num = 0
+    print(success_num,reward_all)
+    return Random_reward_list
+
+Location_matrix = model.Location_matrix_def(N,M,K)
+t1,t2,loss_list= DQN_process(Location_matrix,N,M,K)
+t3 = Random_process(Location_matrix,N,M,K,Times=1)
+c1 = np.arange(0,len(t1))
+c2 = np.arange(0,len(t2))
+c3 = np.arange(0,len(t2))
+c4 = np.arange(0,len(loss_list))
+plt.subplot(2,2,1)
+plt.plot(c1,t1,'b','-')
 plt.xlabel("(steps)_User_Num")
 plt.ylabel("H(Gbps)")
 plt.title("Total_rate")
-plt.legend()
+plt.legend(['DQN_Train'])
+plt.subplot(2,2,2)
+plt.plot(c4,np.log(loss_list),'c','-')
+plt.xlabel("(steps)")
+plt.ylabel("loss")
+plt.title("Train_loss")
+plt.legend(['Train_loss'])
+plt.subplot(2,2,3)
+plt.plot(c2,t2,'r','-')
+plt.plot(c3,t3,'y','-')
+plt.xlabel("(steps)_User_Num")
+plt.ylabel("H(Gbps)")
+plt.title("Total_rate")
+plt.legend(['DQN','Random'])
+
 plt.show()
+
+
