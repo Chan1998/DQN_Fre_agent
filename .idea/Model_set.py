@@ -300,3 +300,4 @@ def Other_method_process(n,m,k,Location_matrix):
     # plt.ylabel("H(Gbps)")
     # plt.title("Success_num_influence")
     # plt.show()
+
