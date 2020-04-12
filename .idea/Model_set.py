@@ -1,7 +1,7 @@
 import numpy as np
 import random
 import matplotlib.pyplot as plt
-import seaborn as sns
+#import seaborn as sns
 
 
 # #设定超参数
@@ -18,19 +18,11 @@ W_AP = 30         #簇头总功率1w，30dBm，W*N
 F = 1000            #载波中心频率（MHz）
 B = 10             #载波带宽（MHz）
 P =  -24               #dBm簇内通信功率假定为，距离为D/4的接收功率，为30-54,大约-24dBm,0.004mW
-n_0 = -174             #正常室温下高斯白噪功率谱密度No=10LogKTB，单位dBm/Hz
-n_1 = -94              #频带内噪声单位dBm
+noise_0 = -174             #正常室温下高斯白噪功率谱密度No=10LogKTB，单位dBm/Hz
+noise_all = -94              #频带内噪声单位dBm
 
-#自由空间损耗计算公式：LS：32.45 + 20log（f）MHz + 20log（d）Km  （dB）输入基站距离，输出损耗
-def LS_caculate(d, f=F):           #以MHz和m输入
-    if (d == 0):                   #计算到自身时，不计算同频干扰
-        print("同一用户，无法计算")
-    else:
-        LS = 32.45 + 20 * (np.log10(f) + np.log10(d/1000))
-    return LS                  #以dB 输出
-
-#基站距离计算：假设矩形情况下，输入簇头编号，（目标簇头，干扰簇头，簇头数目，单位距离（m））
-def Distance_caculate(m1, m2, m, d=D):
+#基站距离计算：假设矩形情况下，输入簇头编号，（目标簇头，干扰簇头，簇头数目，单位距离（m）,中心频点MH# z）
+def LS_caculate(m1, m2, m, d=D, f=F):
     m = int(np.sqrt(m))
     a = int(m1-1)
     b = int(m2-1)
@@ -38,90 +30,96 @@ def Distance_caculate(m1, m2, m, d=D):
     y_a = (a % m)+1
     x_b = (b // m)+1
     y_b = (b % m)+1
-    distance = (((x_a - x_b)**2 + (y_a - y_b)**2) ** 0.5) * d
-    return distance
+    distance = (((x_a - x_b)**2 + (y_a - y_b)**2) ** 0.5) * d       #距离输出（m）
+    # 自由空间损耗计算公式：LS：32.45 + 20log（f）MHz + 20log（d）Km（dB）
+    LS = 32.45 + 20 * (np.log10(f) + np.log10(distance / 1000))
+    return LS           #以dB 输出
 
 #随机生成簇头用户分配表
-def Location_matrix_def(n,m,k):
-    Location_matrix = np.zeros(shape=(n,m,k),dtype=int)
-    for i in range (n):
-        Location_matrix[i,int(m * random.random()),0:k] = 1
-    return Location_matrix
+def Location_dict_def(n,m):       #创建用户基站对应字典,输入用户数及基站总数量
+    Location_dict = {}
+    for i in range (n):             #随机分配用户位置
+        Location_dict[i] = int(m * random.random())
+    return Location_dict            #返回对应字典，可使用Location_dict.get获取用户位置信息
 
-#计算分配矩阵同频干扰，输入（nmk，分配矩阵，连接矩阵，输出同频干扰计算值，n维,单位为mW）
-def I_caculate(n,m,k,Allocation_matrix,Location_matrix):
-    I_matrix = np.zeros(shape=(n),dtype=float)
-    for i in range (n):     #对所有用户进行计算，用户循环
-        done = 0
-        for l in range (m):     #找到当前用户对应簇头和其分配的对应频点，  探索基站
-            if (Location_matrix[i,l,0] == 1):           #找到对应基站
-                if (np.sum(Allocation_matrix[i, l, :]) == 0) :           #用户未分配时直接下一用户
-                    break
-                for j in range (k):                 #用户分配成功，探索频率
-                    if (Allocation_matrix[i,l,j] == 1):         #找到频点，开始计算干扰
-                        for x in range (n):
-                            for t in range (m):
-                                if ((Allocation_matrix[x,t,j]==1) and (x != i) ):           #print("发现同频用户")
-                                    I_matrix[i] +=( 10 ** ((W_AP - LS_caculate(Distance_caculate(l+1,t+1,m)))*0.1))
-                                    #print(i, l, j, x, t, j, I_matrix[i])
-                        done = 1     #print("此用户干扰计算结束")
-                        break
-                if done :
-                    break  #干扰计算结束直接下一用户，print("用户结束")
-    return I_matrix
+#计算分配矩阵同频干扰，输入（n, m，位置字典，频率字典，输出同频干扰计算值，n维,单位为mW）
+def I_caculate(n, m, Location_dict, Frequence_dict):
+    I_list = np.zeros(shape=(n),dtype=float)
+    for i in  Frequence_dict.keys():     #对所有用户进行计算，用户循环
+        n_l = Location_dict.get(i)          #找到当前用户对应簇头
+        n_k = Frequence_dict.get(i)
+        # if n_l == None:                 #如果用户不存在
+        #     print("对应用户不存在或没有分配基站")
+        #     break
+        # if n_k == None:                 #如果用户没有占用频点
+        #     print("对应用户没有分配频点")
+        #     continue
+        for x in Frequence_dict.keys():                  #开始遍历其他用户寻找同频干扰
+            if (x != i) and (Frequence_dict.get(x) == n_k):
+                x_l = Location_dict.get(x)
+                #print("发现同频用户")
+                I_list[i] += ( 10 ** ((W_AP - LS_caculate(n_l+1,x_l+1,m))*0.1))
+        #print("此用户干扰计算结束")
+    return I_list
 
 #计算分配矩阵传输数据量            输出单位为Gbps
-def R_caculate(n,Allocation_matrix,I_matrix):
+def R_caculate(n,Frequence_dict,I_list):
     r = 0
     for i in range (n):
-        if (np.sum(Allocation_matrix[i,:,:])==1):
-            if I_matrix[i] == 0:
-                r += B * 100 * np.log2(1 + (10**(P*0.1))/(10**(n_1*0.1)))
+        if (Frequence_dict.get(i)!= None):
+            if I_list[i] == 0:
+                r += B * 100 * np.log2(1 + (10**(P*0.1))/(10**(-94*0.1)))       #这里-94为noise_all
             else:
-                r += B * 100 * np.log2(1 + (10**(P*0.1))/(I_matrix[i] + 10**(n_1*0.1)))
-    return r
+                r += B * 100 * np.log2(1 + (10**(P*0.1))/(I_list[i] + 10**(-94*0.1)))
+    return r        #输出单位为Gbps
 
 #定义随机分配矩阵
-def Random_Allocation_def(n,m,k,Location_matrix):
-    Random_Allocation_matrix = np.zeros(shape=(n, m, k), dtype=int)
+def Random_dict_def(n,k,Location_dict):
+    Random_dict = {}
     num = 0
     for i in range(n):
-        action = int(k * random.random())
-        for l in range(m):
-            if Location_matrix[i, l, 0] == 1:
-                if (np.sum(Random_Allocation_matrix[:,l,action]) == 0): #相应频段无人使用
-                    Random_Allocation_matrix[i, l, action] = 1
-                    #print("基站%d范围内%d号用户,频段 %d 成功分配" % (l, i, action))
-                    num = num + 1
-                    break
-                else:
-                    #print("对于基站%d范围内%d号用户,频段 %d 已被占用" % (l,i,action))
-                    break
-        #if np.sum(Random_Allocation_matrix[i,:,:])==0:
-            #print("%d号用户,随机分配失败" % ( i))
-    return Random_Allocation_matrix,num
+        n_l = 0
+        occupied = False
+        action = int(k * random.random())   #随机选取一个动作
+        n_l = Location_dict.get(i)          #查找对应用户的连接簇头
+        for x in Random_dict.keys():                 #查找对应矩阵对应频点是否占用
+            if x != i and Location_dict.get(x) == n_l and Random_dict.get(x) == action: #相应频段有人使用
+                #print("基站%d范围内%d号用户,频段 %d 被占用" % (n_l, i, action))
+                occupied = True
+                break
+        if occupied:
+            #print("用户分配失败")
+            continue
+        else:
+            Random_dict[i] = action
+            num += 1
+            #print("对于基站%d范围内%d号用户,频段 %d 分配成功" % (n_l,i,action))
+    return Random_dict,num
 
 #定义传统分配矩阵
-def Usual_Allocation_matrix_def(n,m,k,Location_matrix):
-    Usual_Allocation_matrix = np.zeros(shape=(n,m,k),dtype=int)
+def Usual_dict_def(n, m, k, Location_dict):
+    Usual_dict = {}
+    unoccupied_dict = {}
     num = 0
-    for i in range(n):
-        done = 0
-        for l in range(m):
-            if Location_matrix[i, l, 0] == 1:   #找到对应基站
-                for x in range(k):
-                    if (np.sum(Usual_Allocation_matrix[:, l, x]) == 0):  # 相应频段无人使用
-                        Usual_Allocation_matrix[i, l, x] = 1
-                        # print("基站%d范围内%d号用户,频段 %d 成功分配" % (l, i, x))
-                        # print("%d号用户,随机分配成功" % ( i))
-                        num = num + 1
-                        done = 1
-                        break
-            if done :
-                break
-        # if np.sum(Usual_Allocation_matrix[i,:,:])==0:
-        #     print("%d号用户,随机分配失败" % ( i))
-    return Usual_Allocation_matrix, num
+    for l in range(m):  # 创建簇头已占用频点集合，记录占用情况
+        unoccupied_dict[l] = set(np.arange(0,k))
+    for i in range(n):          #开始对用户进行分配
+        n_l = Location_dict.get(i)      # 查找对应用户的连接簇头
+        if len(unoccupied_dict[n_l]) == 0:
+            #print("对应基站没有可用频点剩余，用户分配失败")
+            pass
+        else:
+            action = unoccupied_dict[n_l].pop()        #剩余可用频点中随机弹出一个值
+            num += 1
+            Usual_dict[i] = action
+            #print("对于基站%d范围内%d号用户,频段 %d 分配成功" % (n_l,i,action))
+    del unoccupied_dict
+    return Usual_dict, num
+
+
+
+
+
 
 #定义贪心算法分配矩阵
 def Greedy_Allocation_matrix_def(n,m,k,Location_matrix):
@@ -252,29 +250,25 @@ def Other_method_process(n,m,k,Location_matrix):
     r4 = R_caculate(n, Allocation_matrix4, I_matrix4)
     return r1, r2, r3, r4, num1, num2, num3, num4
 
-#  if __name__ == "__main__":
-    #pass
-    # print(Other_method_process(N,M,K,Location_matrix))
 
-    # Allocation_matrix1,num1 = Random_Allocation_def(N, M, K, Location_matrix)
-    # I_matrix1 = I_caculate(N, M, K, Allocation_matrix1, Location_matrix)
-    # r1 = R_caculate(N,Allocation_matrix1,I_matrix1)
-    # print(num1,r1)
-    #
-    # Allocation_matrix2, num2 = Usual_Allocation_matrix_def(N, M, K, Location_matrix)
-    # I_matrix2 = I_caculate(N, M, K, Allocation_matrix2, Location_matrix)
-    # r2 = R_caculate(N, Allocation_matrix2, I_matrix2)
-    # print(num2, r2)
-    #
-    # Allocation_matrix3, num3 = Greedy_Allocation_matrix_def(N, M, K, Location_matrix)
-    # I_matrix3 = I_caculate(N, M, K, Allocation_matrix3, Location_matrix)
-    # r3 = R_caculate(N, Allocation_matrix3, I_matrix3)
-    # print(num3, r3)
-    #
-    # Allocation_matrix4, num4 = Ep_Greedy_Allocation_matrix_def(N, M, K, Location_matrix)
-    # I_matrix4 = I_caculate(N, M, K, Allocation_matrix4, Location_matrix)
-    # r4 = R_caculate(N, Allocation_matrix4, I_matrix4)
-    # print(num4, r4)
+if __name__ == "__main__":
+    N = 100
+    M = 25
+    K = 4
+    Location_dict = Location_dict_def(N, M)
+    #print(Location_dict)
+
+    # Frequence_dict,num = Random_dict_def(N, K, Location_dict)
+    # print(Frequence_dict,num)
+    # I_list = I_caculate(N,M, Location_dict, Frequence_dict)
+    # print(I_list)
+    # r = R_caculate(N, Frequence_dict, I_list)
+    # print(r)
+
+    Frequence_dict2, num2 = Usual_dict_def(N, M, K, Location_dict)
+    print(Frequence_dict2, num2)
+
+
 
 
     #T = 10
