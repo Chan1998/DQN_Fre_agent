@@ -131,9 +131,9 @@ class DeepQNetwork():
 
 # DQN初始化环境
 def reset(n, m, k):
-    Location_matrix = model.Location_matrix_def(n, m, k)
-    DQN_Allocation_matrix = np.zeros(shape=(n, m, k), dtype=int)
-    state = np.reshape(DQN_Allocation_matrix, [n * m * k])
+    Location_dict = model.Location_dict_def(n, m)
+    DQN_dict = {}
+    state = np.reshape(DQN_dict, [n * m * k])
     return state, Location_matrix, DQN_Allocation_matrix
 
 # DQN_定义DQN分配矩阵（传输速率为目标）
