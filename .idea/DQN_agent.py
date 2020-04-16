@@ -21,7 +21,7 @@ class DeepQNetwork():
         self.gamma = gamma
         self.epsilon = epsilon
         self.action_dim = k
-        self.state_dim = n + k
+        self.state_dim =  k
         self.lay_num_list = lay_num_list
         self.double_DQN = Double_DQN
         self.duling_DQN = Duling_DQN
@@ -31,11 +31,14 @@ class DeepQNetwork():
         tf.summary.FileWriter("DQN/summaries", sess.graph)
 
     # net_frame using for creating Q & target network
-    def net_frame(self, hiddens, inpt, num_actions, scope, reuse=None):
+    def net_frame(self, phase, hiddens, inpt, num_actions, scope, reuse=None):
         with tf.variable_scope(scope, reuse=False):
             out = inpt
+            #out = layers.batch_norm(inpt,center=True, scale=True, is_training=phase)
             for hidden in hiddens:
-                out = layers.fully_connected(out, num_outputs=hidden, activation_fn=tf.nn.relu)
+                out1 = layers.fully_connected(out, num_outputs=hidden, activation_fn=None)
+                out2 = layers.batch_norm(out1, center=True, scale=True, is_training=phase)
+                out = tf.nn.relu(out2, 'relu')
             if (self.duling_DQN):       #Duling_DQN将网络结构改变
                 out_v = layers.fully_connected(out, num_outputs=1, activation_fn=None)
                 out_a = layers.fully_connected(out, num_outputs=num_actions, activation_fn=None)
@@ -46,15 +49,16 @@ class DeepQNetwork():
 
     # create q_network & target_network
     def network(self):
+        self.phase = tf.placeholder(tf.bool, name='phase')
         # q_network
         self.inputs_q = tf.placeholder(dtype=tf.float32, shape=[None, self.state_dim], name="inputs_q")
         scope_var = "q_network"
-        self.q_value = self.net_frame(self.lay_num_list, self.inputs_q, self.action_dim, scope_var, reuse=True)
+        self.q_value = self.net_frame(self.phase, self.lay_num_list, self.inputs_q, self.action_dim, scope_var, reuse=True)
 
         # target_network
         self.inputs_target = tf.placeholder(dtype=tf.float32, shape=[None, self.state_dim], name="inputs_target")
         scope_tar = "target_network"
-        self.q_target = self.net_frame(self.lay_num_list, self.inputs_target, self.action_dim, scope_tar)
+        self.q_target = self.net_frame(self.phase, self.lay_num_list, self.inputs_target, self.action_dim, scope_tar)
 
         with tf.variable_scope("loss"):
             self.action = tf.placeholder(dtype=tf.int32, shape=[None], name="action")
@@ -74,7 +78,8 @@ class DeepQNetwork():
 
     def train(self, state, reward, action, state_next):
         q, q_target, q_next = self.sess.run([self.q_value, self.q_target,self.q_value],
-                                    feed_dict={self.inputs_q: state,
+                                    feed_dict={self.phase:1,
+                                               self.inputs_q: state,
                                                self.inputs_target: state_next,
                                                self.inputs_q: state_next})
 
@@ -96,27 +101,28 @@ class DeepQNetwork():
 
         target = reward + self.gamma * q_target_best_mask
         loss, _ = self.sess.run([self.loss, self.train_op],
-                                feed_dict={self.inputs_q: state, self.target: target, self.action: action})
+                                feed_dict={self.phase:1, self.inputs_q: state, self.target: target, self.action: action})
         return loss
         # chose action
 
     def chose_action_train(self, current_state):
         current_state = current_state[np.newaxis, :]  # *** array dim: (xx,)  --> (1 , xx) ***
-        q = self.sess.run(self.q_value, feed_dict={self.inputs_q: current_state})
+        q = self.sess.run(self.q_value, feed_dict={self.phase:1, self.inputs_q: current_state})
         #print(q)
         # e-greedy
         if np.random.random() < self.epsilon:
             action_chosen = np.random.randint(0, self.action_dim)
         else:
             action_chosen = np.argmax(q)
-
+        #print(np.argmax(q),q)
         return action_chosen
 
     def chose_action_test(self, current_state):
         current_state = current_state[np.newaxis, :]  # *** array dim: (xx,)  --> (1 , xx) ***
-        q = self.sess.run(self.q_value, feed_dict={self.inputs_q: current_state})
-        print(q)
+        q = self.sess.run(self.q_value, feed_dict={self.phase:0, self.inputs_q: current_state})
+        #print(q)
         action_chosen = np.argmax(q)
+        #print(q)
         return action_chosen
 
     # upadate parmerters
@@ -158,7 +164,8 @@ def DQN_input_def(n, k, unoccupied_frequence_set, Location_dict):
     L_list = list(Location_dict.values())
     for i in unoccupied_frequence_set:      #先将set转换为列表
         frequence_list[i] = 1
-    input_list = np.hstack((frequence_list,L_list))
+    #input_list = np.hstack((frequence_list,L_list))
+    input_list = frequence_list
     return input_list
 
 # DQN_定义DQN分配矩阵（传输速率为目标）,通过动作和输入状态，给出下一状态
@@ -182,19 +189,19 @@ def DQN_step(arg_num, Location_dict, DQN_dict, unoccupied_dict, I_dict, action, 
 
 # reward_all = model.R_caculate(DQN_dict, I_dict)
 
-N = 100
-M = 25
-K = 4
+N = 20
+M = 4
+K = 5
 
 
 # #智能体变量
-MEMORY_SIZE = 500
-EPISODES = 10            #不同用户分布情况下重复
-MAX_STEP = 100
-BATCH_SIZE = 20       #单次训练量大小
+MEMORY_SIZE = 1000
+EPISODES = 100           #不同用户分布情况下重复
+MAX_STEP = 1000
+BATCH_SIZE = 4        #单次训练量大小
 UPDATE_PERIOD = 1  # update target network parameters目标网络随训练步数更新周期
-decay_epsilon_STEPS = 5       #降低探索概率次数
-Lay_num_list = [104, 64, 32, 16, 8, 4] #隐藏层节点设置
+decay_epsilon_STEPS = 1       #降低探索概率次数
+Lay_num_list = [4,4] #隐藏层节点设置
 
 # #DQN训练，测试代码
 def DQN_process(Location_dict1, n, m, k):
@@ -240,6 +247,7 @@ def DQN_process(Location_dict1, n, m, k):
                     #     print(loss)
                 if update_iter % UPDATE_PERIOD == 0:
                     DQN.update_prmt()                   #更新目标Q网络
+                    #print("更新网络",step)
 
                 # if step % 20==0 :
                 #     print("[in {}espisodes][after {}tring,][chose action is{}][reward_all = {} ]"
@@ -271,11 +279,12 @@ def DQN_process(Location_dict1, n, m, k):
             arg_num += 1
             I_dict = model.I_caculate(m, Location_dict, DQN_dict)
             reward_all = model.R_caculate(DQN_dict, I_dict)
-            print("[for {}User,][given channl is{}][reward_all = {} ]".format(step, action, reward_all))
+            #print("[for {}User,][given channl is{}][reward_all = {} ]".format(step, action, reward_all))
+            #print("[for {}User,][given channl is{}]".format(step, action))
             state = next_state
             reward_test_list.append(reward_all)
             success_num = len(DQN_dict.keys())
-        print(success_num,reward_all)
+        print(success_num,reward_all,DQN_dict)
     return reward_test_list,loss_list
 
 def Random_process(Location_dict,n,m,k):
@@ -290,6 +299,7 @@ def Random_process(Location_dict,n,m,k):
         next_state, DQN_dict, I_dict, unoccupied_dict, reward = DQN_step \
             (arg_num, Location_dict, DQN_dict, unoccupied_dict, I_dict, action, n, m, k)
         arg_num += 1
+        I_dict = model.I_caculate(m, Location_dict, DQN_dict)
         reward_all = model.R_caculate(DQN_dict, I_dict)
         Random_reward_list.append(reward_all)
         state = next_state

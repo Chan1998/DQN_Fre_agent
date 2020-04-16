@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="5e623a55-375f-459a-a13e-d1a9cb6b61f1" name="默认" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/DQN_agent.py" afterPath="$PROJECT_DIR$/.idea/DQN_agent.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -12,7 +13,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/DQN_agent_Fre$DQN_agent.coverage" NAME="DQN_agent Coverage Results" MODIFIED="1586932995952" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/.idea" />
+    <SUITE FILE_PATH="coverage/DQN_agent_Fre$DQN_agent.coverage" NAME="DQN_agent Coverage Results" MODIFIED="1587021128408" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/.idea" />
     <SUITE FILE_PATH="coverage/DQN_agent_Fre$Other_method.coverage" NAME="Other_method Coverage Results" MODIFIED="1585812642264" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/.idea" />
     <SUITE FILE_PATH="coverage/DQN_agent_Fre$Fre_env.coverage" NAME="Fre_env Coverage Results" MODIFIED="1583044258402" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/.idea" />
     <SUITE FILE_PATH="coverage/DQN_agent_Fre$DQN_Fre_Main.coverage" NAME="DQN_Fre_Main Coverage Results" MODIFIED="1585634512202" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/.idea" />
@@ -25,7 +26,7 @@
       <file leaf-file-name="DQN_Fre_Main.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/.idea/DQN_Fre_Main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4255">
+            <state relative-caret-position="0">
               <caret line="651" column="35" lean-forward="false" selection-start-line="651" selection-start-column="28" selection-end-line="651" selection-end-column="35" />
               <folding>
                 <element signature="e#0#21#0" expanded="true" />
@@ -43,8 +44,8 @@
       <file leaf-file-name="DQN_agent.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/.idea/DQN_agent.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2382">
-              <caret line="150" column="29" lean-forward="true" selection-start-line="150" selection-start-column="29" selection-end-line="150" selection-end-column="29" />
+            <state relative-caret-position="493">
+              <caret line="202" column="23" lean-forward="false" selection-start-line="202" selection-start-column="23" selection-end-line="202" selection-end-column="23" />
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
               </folding>
@@ -879,13 +880,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/.idea/Fre_env.py" />
-    <entry file="file://F:/anaconda/envs/tensorflow1/Lib/site-packages/tensorflow/python/client/session.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1134">
-          <caret line="974" column="0" lean-forward="false" selection-start-line="974" selection-start-column="0" selection-end-line="974" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://F:/anaconda/envs/tensorflow1/Lib/site-packages/matplotlib/fontconfig_pattern.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="237">
@@ -932,7 +926,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/.idea/DQN_Fre_Main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4255">
+        <state relative-caret-position="0">
           <caret line="651" column="35" lean-forward="false" selection-start-line="651" selection-start-column="28" selection-end-line="651" selection-end-column="35" />
           <folding>
             <element signature="e#0#21#0" expanded="true" />
@@ -958,10 +952,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://F:/anaconda/envs/tensorflow1/Lib/site-packages/tensorflow/python/client/session.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="1315" column="0" lean-forward="false" selection-start-line="1315" selection-start-column="0" selection-end-line="1315" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/.idea/DQN_agent.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2382">
-          <caret line="150" column="29" lean-forward="true" selection-start-line="150" selection-start-column="29" selection-end-line="150" selection-end-column="29" />
+        <state relative-caret-position="493">
+          <caret line="202" column="23" lean-forward="false" selection-start-line="202" selection-start-column="23" selection-end-line="202" selection-end-column="23" />
           <folding>
             <element signature="e#0#23#0" expanded="true" />
           </folding>
