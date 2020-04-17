@@ -17,11 +17,11 @@ import matplotlib.pyplot as plt
 
 ##built class for the DQN
 class DeepQNetwork():
-    def __init__(self, n, m, k, lay_num_list, Double_DQN, Duling_DQN, sess=None, gamma=0.8, epsilon=0.8):
+    def __init__(self, n, m, k, lay_num_list, Double_DQN, Duling_DQN, sess=None, gamma=0.2, epsilon=0.6):
         self.gamma = gamma
         self.epsilon = epsilon
         self.action_dim = k
-        self.state_dim =  k
+        self.state_dim =  n + k
         self.lay_num_list = lay_num_list
         self.double_DQN = Double_DQN
         self.duling_DQN = Duling_DQN
@@ -71,7 +71,7 @@ class DeepQNetwork():
             self.loss = tf.reduce_mean(tf.square(q_action - self.target))
 
         with tf.variable_scope("train"):
-            optimizer = tf.train.RMSPropOptimizer(0.001)
+            optimizer = tf.train.RMSPropOptimizer(1)
             self.train_op = optimizer.minimize(self.loss)
 
             # training
@@ -103,6 +103,7 @@ class DeepQNetwork():
         loss, _ = self.sess.run([self.loss, self.train_op],
                                 feed_dict={self.phase:1, self.inputs_q: state, self.target: target, self.action: action})
         return loss
+
         # chose action
 
     def chose_action_train(self, current_state):
@@ -114,7 +115,7 @@ class DeepQNetwork():
             action_chosen = np.random.randint(0, self.action_dim)
         else:
             action_chosen = np.argmax(q)
-        #print(np.argmax(q),q)
+        print(np.argmax(q))
         return action_chosen
 
     def chose_action_test(self, current_state):
@@ -122,7 +123,7 @@ class DeepQNetwork():
         q = self.sess.run(self.q_value, feed_dict={self.phase:0, self.inputs_q: current_state})
         #print(q)
         action_chosen = np.argmax(q)
-        #print(q)
+        print(np.argmax(q), q)
         return action_chosen
 
     # upadate parmerters
@@ -138,52 +139,46 @@ class DeepQNetwork():
 
 # DQN初始化环境
 def reset(n, m, k):
-    Location_dict = model.Location_dict_def(n, m)
     DQN_dict = {}
     unoccupied_dict = {}
     I_dict = {}
     for l in range(m):  # 创建簇头已占用频点集合，记录占用情况
         unoccupied_dict[l] = set(np.arange(0,k))
     #state = DQN_input_def(n, k, set(np.arange(0,k)), I_dict)
-    state = DQN_input_def(n, k, set(np.arange(0, k)), Location_dict)
-    return state, Location_dict, DQN_dict, unoccupied_dict, I_dict
+    state = DQN_input_def(n, k, set(np.arange(0, k)), I_dict)
+    return state, DQN_dict, unoccupied_dict, I_dict
 
 #定义DQN网络输入形式 用户可使用频点状态（K个bool形式）+ （所用用户对应干扰情况N个，float）
-# def DQN_input_def(n, k, unoccupied_frequence_set, I_dict):
-#     frequence_list = np.zeros(shape=(k), dtype=float)
-#     I_list = np.zeros(shape=(n), dtype=float)
-#     for i in unoccupied_frequence_set:      #先将set转换为列表
-#         frequence_list[i] = 1
-#     for i in I_dict.keys():
-#         I_list[i] = I_dict.get(i)
-#     input_list = np.hstack((frequence_list,I_list))
-#     return input_list
-
-def DQN_input_def(n, k, unoccupied_frequence_set, Location_dict):
+def DQN_input_def(n, k, unoccupied_frequence_set, I_dict):
     frequence_list = np.zeros(shape=(k), dtype=float)
-    L_list = list(Location_dict.values())
+    I_list = np.zeros(shape=(n), dtype=float)
     for i in unoccupied_frequence_set:      #先将set转换为列表
         frequence_list[i] = 1
-    #input_list = np.hstack((frequence_list,L_list))
-    input_list = frequence_list
+    for i in I_dict.keys():
+        I_list[i] = 10000 * I_dict.get(i)
+    input_list = np.hstack((frequence_list,I_list))
     return input_list
 
+
 # DQN_定义DQN分配矩阵（传输速率为目标）,通过动作和输入状态，给出下一状态
-def DQN_step(arg_num, Location_dict, DQN_dict, unoccupied_dict, I_dict, action, n, m, k):
-    #reward_all0 = reward_all
+def DQN_step(reward_all, arg_num, Location_dict, DQN_dict, unoccupied_dict, I_dict, action, n, m, k):
+    reward_all0 = reward_all
     n_l = Location_dict.get(arg_num)   #找到用户对应基站
     if action  in unoccupied_dict[n_l]:
         DQN_dict[arg_num] = action
         unoccupied_dict[n_l].remove(action)
         #print("选择对应频点，进行干扰计算更新")
-        #I_dict = model.I_caculate(m, Location_dict, DQN_dict)
+        I_dict = model.I_caculate(m, Location_dict, DQN_dict)
+        reward_all = model.R_caculate(DQN_dict,I_dict)
+        reward = 0.001 * (reward_all - reward_all0)
         #print("基站%d范围内%d号用户,频段 %d 成功分配" % (n_l, arg_num, action))
-        reward = 1
     else:
         #print("选取动作不在可选频点集合")
-        reward = -1
-    next_state = DQN_input_def(n, k, unoccupied_dict[n_l], Location_dict)
-    return next_state, DQN_dict, I_dict, unoccupied_dict, reward
+        if arg_num > 0.8 * m*k :
+            reward = 0
+        else: reward = -1
+    next_state = DQN_input_def(n, k, unoccupied_dict[n_l], I_dict)
+    return next_state, DQN_dict, I_dict, unoccupied_dict, reward, reward_all
 
 #给出DQN下一步环境
 
@@ -195,13 +190,13 @@ K = 5
 
 
 # #智能体变量
-MEMORY_SIZE = 1000
+MEMORY_SIZE = 800
 EPISODES = 100           #不同用户分布情况下重复
-MAX_STEP = 1000
-BATCH_SIZE = 4        #单次训练量大小
-UPDATE_PERIOD = 1  # update target network parameters目标网络随训练步数更新周期
-decay_epsilon_STEPS = 1       #降低探索概率次数
-Lay_num_list = [4,4] #隐藏层节点设置
+MAX_STEP = 20
+BATCH_SIZE = 1        #单次训练量大小
+UPDATE_PERIOD = 20  # update target network parameters目标网络随训练步数更新周期
+decay_epsilon_STEPS = 50       #降低探索概率次数
+Lay_num_list = [25,16,8,4] #隐藏层节点设置
 
 # #DQN训练，测试代码
 def DQN_process(Location_dict1, n, m, k):
@@ -218,15 +213,17 @@ def DQN_process(Location_dict1, n, m, k):
         Transition = collections.namedtuple("Transition", ["state", "action", "reward", "next_state"])
         Location_dict = Location_dict1
         print("网络训练中....")
+        update_iter = 0
         for episode in range(EPISODES):
-            update_iter = 0
-            state, _, DQN_dict, unoccupied_dict, I_dict = reset(n, m, k)
+
+            state, DQN_dict, unoccupied_dict, I_dict = reset(n, m, k)
             arg_num = 0
-            for step in range(n):
+            reward_all = 0
+            for step in range(MAX_STEP):
                 action = DQN.chose_action_train(state)            #通过网络选择对应动作
                 #进行环境交互
-                next_state, DQN_dict, I_dict, unoccupied_dict, reward = DQN_step \
-                        (arg_num, Location_dict, DQN_dict, unoccupied_dict, I_dict, action, n, m, k)
+                next_state, DQN_dict, I_dict, unoccupied_dict, reward, reward_all = DQN_step \
+                        (reward_all ,arg_num, Location_dict, DQN_dict, unoccupied_dict, I_dict, action, n, m, k)
                 arg_num += 1
                 if len(memory) > MEMORY_SIZE:       #超出长度删除最初经验
                     memory.pop(0)
@@ -242,7 +239,8 @@ def DQN_process(Location_dict1, n, m, k):
                               state_next=batch_next_state
                               )
                     update_iter += 1
-                    loss_list.append(loss)
+                    if update_iter % 20 ==1:
+                        loss_list.append(loss)
                     # if step % 10 == 0:
                     #     print(loss)
                 if update_iter % UPDATE_PERIOD == 0:
@@ -257,7 +255,9 @@ def DQN_process(Location_dict1, n, m, k):
                     DQN.decay_epsilon()                 #随训练进行减小探索力度
 
                 state = next_state
-            I_dict = model.I_caculate(m, Location_dict, DQN_dict)
+
+                if arg_num == N:
+                    arg_num = 0
             reward_all = model.R_caculate(DQN_dict, I_dict)
             success_num = len(DQN_dict.keys())
             print("[in {}episode,][success_num is{}][reward_all = {} ]"
@@ -268,17 +268,18 @@ def DQN_process(Location_dict1, n, m, k):
         # 测试
         print("网络测试中....")
         # for episode in range(EPISODES):            #这里取消循环，后面如果加上别忘了缩进
-        state, _, DQN_dict, unoccupied_dict, I_dict= reset(n, m, k)
+        state, DQN_dict, unoccupied_dict, I_dict= reset(n, m, k)
         reward_test_list = []
         arg_num = 0
+        reward_all = 0
         for step in range(n):
             action = DQN.chose_action_test(state)  # 通过网络选择对应动作
             # 进行环境交互
-            next_state, DQN_dict, I_dict, unoccupied_dict, reward = DQN_step \
-                (arg_num, Location_dict, DQN_dict, unoccupied_dict, I_dict, action, n, m, k)
+            next_state, DQN_dict, I_dict, unoccupied_dict, reward, reward_all = DQN_step \
+                (reward_all, arg_num, Location_dict, DQN_dict, unoccupied_dict, I_dict, action, n, m, k)
             arg_num += 1
-            I_dict = model.I_caculate(m, Location_dict, DQN_dict)
-            reward_all = model.R_caculate(DQN_dict, I_dict)
+            # I_dict = model.I_caculate(m, Location_dict, DQN_dict)
+            # reward_all = model.R_caculate(DQN_dict, I_dict)
             #print("[for {}User,][given channl is{}][reward_all = {} ]".format(step, action, reward_all))
             #print("[for {}User,][given channl is{}]".format(step, action))
             state = next_state
@@ -288,7 +289,7 @@ def DQN_process(Location_dict1, n, m, k):
     return reward_test_list,loss_list
 
 def Random_process(Location_dict,n,m,k):
-    state, _, DQN_dict, unoccupied_dict, I_dict = reset(n, m, k)
+    state,DQN_dict, unoccupied_dict, I_dict = reset(n, m, k)
     Random_reward_list = []
     reward_all = 0
     arg_num = 0
@@ -296,12 +297,13 @@ def Random_process(Location_dict,n,m,k):
     for i in range(n):
         #print(arg_num)
         action = int(K*random.random())
-        next_state, DQN_dict, I_dict, unoccupied_dict, reward = DQN_step \
-            (arg_num, Location_dict, DQN_dict, unoccupied_dict, I_dict, action, n, m, k)
+        next_state, DQN_dict, I_dict, unoccupied_dict, reward, reward_all = DQN_step \
+            (reward_all, arg_num, Location_dict, DQN_dict, unoccupied_dict, I_dict, action, n, m, k)
         arg_num += 1
-        I_dict = model.I_caculate(m, Location_dict, DQN_dict)
-        reward_all = model.R_caculate(DQN_dict, I_dict)
+        # I_dict = model.I_caculate(m, Location_dict, DQN_dict)
+        # reward_all = model.R_caculate(DQN_dict, I_dict)
         Random_reward_list.append(reward_all)
+        #print(reward)
         state = next_state
     success_num = len(DQN_dict.keys())
     print(success_num,reward_all)
