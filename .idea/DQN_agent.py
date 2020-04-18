@@ -16,8 +16,9 @@ import matplotlib.pyplot as plt
 #lay_num = 200
 
 ##built class for the DQN
+
 class DeepQNetwork():
-    def __init__(self, n, m, k, lay_num_list, Double_DQN, Duling_DQN, sess=None, gamma=0.2, epsilon=0.6):
+    def __init__(self, n, m, k, lay_num_list, Double_DQN, Duling_DQN, sess=None, gamma=0.2, epsilon=0.8):
         self.gamma = gamma
         self.epsilon = epsilon
         self.action_dim = k
@@ -28,17 +29,18 @@ class DeepQNetwork():
         self.network()
         self.sess = sess
         self.sess.run(tf.global_variables_initializer())
-        tf.summary.FileWriter("DQN/summaries", sess.graph)
+        self.merged = tf.summary.merge_all()
+        self.write = tf.summary.FileWriter("DQN/summaries", sess.graph)
 
     # net_frame using for creating Q & target network
     def net_frame(self, phase, hiddens, inpt, num_actions, scope, reuse=None):
         with tf.variable_scope(scope, reuse=False):
-            out = inpt
-            #out = layers.batch_norm(inpt,center=True, scale=True, is_training=phase)
+            #out = inpt
+            out = layers.batch_norm(inpt,center=True, scale=True, is_training=phase)
             for hidden in hiddens:
                 out1 = layers.fully_connected(out, num_outputs=hidden, activation_fn=None)
                 out2 = layers.batch_norm(out1, center=True, scale=True, is_training=phase)
-                out = tf.nn.relu(out2, 'relu')
+                out = tf.nn.relu(out2, 'tanh')
             if (self.duling_DQN):       #Duling_DQN将网络结构改变
                 out_v = layers.fully_connected(out, num_outputs=1, activation_fn=None)
                 out_a = layers.fully_connected(out, num_outputs=num_actions, activation_fn=None)
@@ -69,9 +71,9 @@ class DeepQNetwork():
 
             self.target = tf.placeholder(dtype=tf.float32, shape=[None], name="target")
             self.loss = tf.reduce_mean(tf.square(q_action - self.target))
-
+            tf.summary.scalar('loss', self.loss)
         with tf.variable_scope("train"):
-            optimizer = tf.train.RMSPropOptimizer(1)
+            optimizer = tf.train.RMSPropOptimizer(0.001)
             self.train_op = optimizer.minimize(self.loss)
 
             # training
@@ -100,9 +102,9 @@ class DeepQNetwork():
             q_target_best_mask =  q_target_best
 
         target = reward + self.gamma * q_target_best_mask
-        loss, _ = self.sess.run([self.loss, self.train_op],
+        summery, _, _ = self.sess.run([self.merged, self.loss, self.train_op],
                                 feed_dict={self.phase:1, self.inputs_q: state, self.target: target, self.action: action})
-        return loss
+        return summery
 
         # chose action
 
@@ -131,7 +133,7 @@ class DeepQNetwork():
         q_prmts = tf.get_collection(tf.GraphKeys.GLOBAL_VARIABLES, "q_network")
         target_prmts = tf.get_collection(tf.GraphKeys.GLOBAL_VARIABLES, "target_network")
         self.sess.run([tf.assign(t, q) for t, q in zip(target_prmts, q_prmts)])  # ***
-        #print("updating target-network parmeters...")
+        print("updating target-network parmeters...")
 
     def decay_epsilon(self):
         if self.epsilon > 0.03:
@@ -176,7 +178,7 @@ def DQN_step(reward_all, arg_num, Location_dict, DQN_dict, unoccupied_dict, I_di
         #print("选取动作不在可选频点集合")
         if arg_num > 0.8 * m*k :
             reward = 0
-        else: reward = -1
+        else: reward = -8
     next_state = DQN_input_def(n, k, unoccupied_dict[n_l], I_dict)
     return next_state, DQN_dict, I_dict, unoccupied_dict, reward, reward_all
 
@@ -191,11 +193,11 @@ K = 5
 
 # #智能体变量
 MEMORY_SIZE = 800
-EPISODES = 100           #不同用户分布情况下重复
+EPISODES = 100          #不同用户分布情况下重复
 MAX_STEP = 20
 BATCH_SIZE = 1        #单次训练量大小
-UPDATE_PERIOD = 20  # update target network parameters目标网络随训练步数更新周期
-decay_epsilon_STEPS = 50       #降低探索概率次数
+UPDATE_PERIOD = 10  # update target network parameters目标网络随训练步数更新周期
+decay_epsilon_STEPS = 100       #降低探索概率次数
 Lay_num_list = [25,16,8,4] #隐藏层节点设置
 
 # #DQN训练，测试代码
@@ -208,7 +210,6 @@ def DQN_process(Location_dict1, n, m, k):
         # DQN智能体
         DQN = DeepQNetwork(n, m, k, Lay_num_list,True, True, sess)  # Double,Duling= 1
         # 训练
-        loss_list = []
         memory = []
         Transition = collections.namedtuple("Transition", ["state", "action", "reward", "next_state"])
         Location_dict = Location_dict1
@@ -233,14 +234,13 @@ def DQN_process(Location_dict1, n, m, k):
                     batch_transition = random.sample(memory, BATCH_SIZE)        #开始随机抽取
                     batch_state, batch_action, batch_reward, batch_next_state = map(np.array,
                                                                                     zip(*batch_transition))
-                    loss = DQN.train(state=batch_state,            #进行训练
+                    summery = DQN.train(state=batch_state,            #进行训练
                               reward=batch_reward,
                               action=batch_action,
                               state_next=batch_next_state
                               )
                     update_iter += 1
-                    if update_iter % 20 ==1:
-                        loss_list.append(loss)
+                    DQN.write.add_summary(summery,update_iter )
                     # if step % 10 == 0:
                     #     print(loss)
                 if update_iter % UPDATE_PERIOD == 0:
@@ -286,7 +286,7 @@ def DQN_process(Location_dict1, n, m, k):
             reward_test_list.append(reward_all)
             success_num = len(DQN_dict.keys())
         print(success_num,reward_all,DQN_dict)
-    return reward_test_list,loss_list
+    return reward_test_list
 
 def Random_process(Location_dict,n,m,k):
     state,DQN_dict, unoccupied_dict, I_dict = reset(n, m, k)
@@ -309,35 +309,33 @@ def Random_process(Location_dict,n,m,k):
     print(success_num,reward_all)
     return Random_reward_list
 
-Location_dict2 = model.Location_dict_def(N,M)
-t1,loss_list= DQN_process(Location_dict2,N,M,K)
-for i in range(len(loss_list)):
-    loss_list[i] += 1e-5
-t3 = Random_process(Location_dict2,N,M,K)
-c1 = np.arange(0,len(t1))
-c3 = np.arange(0,len(t3))
-c4 = np.arange(0,len(loss_list))
-# plt.subplot(2,2,1)
-# plt.plot(c1,t1,'b-')
-# plt.xlabel("(steps)_User_Num")
-# plt.ylabel("H(Gbps)")
-# plt.title("Total_rate")
-# plt.legend(['DQN_Train'])
-plt.subplot(2,1,1)
-plt.plot(c4,np.log(loss_list),'c-')
-plt.xlabel("(steps)")
-plt.ylabel("loss")
-plt.title("Train_loss")
-plt.legend(['Train_loss'])
-plt.subplot(2,1,2)
-plt.plot(c1,t1,'r-')
-plt.plot(c3,t3,'y-')
-plt.xlabel("(steps)_User_Num")
-plt.ylabel("H(Gbps)")
-plt.title("Total_rate")
-plt.legend(['DQN','Random'])
+if __name__ == "__main__":
+    Location_dict2 = model.Location_dict_def(N,M)
+    t1= DQN_process(Location_dict2,N,M,K)
+    t3 = Random_process(Location_dict2,N,M,K)
+    c1 = np.arange(0,len(t1))
+    c3 = np.arange(0,len(t3))
+    # plt.subplot(2,2,1)
+    # plt.plot(c1,t1,'b-')
+    # plt.xlabel("(steps)_User_Num")
+    # plt.ylabel("H(Gbps)")
+    # plt.title("Total_rate")
+    # plt.legend(['DQN_Train'])
+    # plt.subplot(2,1,1)
+    # plt.plot(c4,np.log(loss_list),'c-')
+    # plt.xlabel("(steps)")
+    # plt.ylabel("loss")
+    # plt.title("Train_loss")
+    # plt.legend(['Train_loss'])
+    # plt.subplot(2,1,2)
+    plt.plot(c1,t1,'r-')
+    plt.plot(c3,t3,'y-')
+    plt.xlabel("(steps)_User_Num")
+    plt.ylabel("H(Gbps)")
+    plt.title("Total_rate")
+    plt.legend(['DQN','Random'])
 
-plt.show()
+    plt.show()
 
 
-
+# tensorboard --logdir=C:\Users\CP\PycharmProjects\DQN_agent_Fre\.idea\DQN\summaries
