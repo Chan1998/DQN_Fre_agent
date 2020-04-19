@@ -15,8 +15,9 @@ import matplotlib.pyplot as plt
 #UPDATE_PERIOD = 200  # update target network parameters
 #lay_num = 200
 
-##built class for the DQN
+# tensorboard --logdir=C:\Users\CP\PycharmProjects\DQN_agent_Fre\.idea\DQN\summaries
 
+##built class for the DQN
 class DeepQNetwork():
     def __init__(self, n, m, k, lay_num_list, Double_DQN, Duling_DQN, sess=None, gamma=0.2, epsilon=0.8):
         self.gamma = gamma
@@ -40,7 +41,7 @@ class DeepQNetwork():
             for hidden in hiddens:
                 out1 = layers.fully_connected(out, num_outputs=hidden, activation_fn=None)
                 out2 = layers.batch_norm(out1, center=True, scale=True, is_training=phase)
-                out = tf.nn.relu(out2, 'tanh')
+                out = tf.nn.tanh(out2, 'relu')
             if (self.duling_DQN):       #Duling_DQN将网络结构改变
                 out_v = layers.fully_connected(out, num_outputs=1, activation_fn=None)
                 out_a = layers.fully_connected(out, num_outputs=num_actions, activation_fn=None)
@@ -73,7 +74,7 @@ class DeepQNetwork():
             self.loss = tf.reduce_mean(tf.square(q_action - self.target))
             tf.summary.scalar('loss', self.loss)
         with tf.variable_scope("train"):
-            optimizer = tf.train.RMSPropOptimizer(0.001)
+            optimizer = tf.train.RMSPropOptimizer(0.01)
             self.train_op = optimizer.minimize(self.loss)
 
             # training
@@ -147,18 +148,19 @@ def reset(n, m, k):
     for l in range(m):  # 创建簇头已占用频点集合，记录占用情况
         unoccupied_dict[l] = set(np.arange(0,k))
     #state = DQN_input_def(n, k, set(np.arange(0,k)), I_dict)
-    state = DQN_input_def(n, k, set(np.arange(0, k)), I_dict)
+    state = DQN_input_def(n, k, set(np.arange(0, k)), DQN_dict)
     return state, DQN_dict, unoccupied_dict, I_dict
 
 #定义DQN网络输入形式 用户可使用频点状态（K个bool形式）+ （所用用户对应干扰情况N个，float）
-def DQN_input_def(n, k, unoccupied_frequence_set, I_dict):
+def DQN_input_def(n, k, unoccupied_frequence_set, DQN_dict):
     frequence_list = np.zeros(shape=(k), dtype=float)
-    I_list = np.zeros(shape=(n), dtype=float)
+    DQN_list = np.zeros(shape=(n), dtype=float)
     for i in unoccupied_frequence_set:      #先将set转换为列表
         frequence_list[i] = 1
-    for i in I_dict.keys():
-        I_list[i] = 10000 * I_dict.get(i)
-    input_list = np.hstack((frequence_list,I_list))
+    for i in DQN_dict.keys():
+        #DQN_list[i] = 10000 * I_dict.get(i)
+        DQN_list[i] = 1
+    input_list = np.hstack((frequence_list,DQN_list))
     return input_list
 
 
@@ -179,12 +181,14 @@ def DQN_step(reward_all, arg_num, Location_dict, DQN_dict, unoccupied_dict, I_di
         if arg_num > 0.8 * m*k :
             reward = 0
         else: reward = -8
-    next_state = DQN_input_def(n, k, unoccupied_dict[n_l], I_dict)
+    next_state = DQN_input_def(n, k, unoccupied_dict[n_l], DQN_dict)
     return next_state, DQN_dict, I_dict, unoccupied_dict, reward, reward_all
 
 #给出DQN下一步环境
 
 # reward_all = model.R_caculate(DQN_dict, I_dict)
+
+'''
 
 N = 20
 M = 4
@@ -193,10 +197,10 @@ K = 5
 
 # #智能体变量
 MEMORY_SIZE = 800
-EPISODES = 100          #不同用户分布情况下重复
+EPISODES = 50          #不同用户分布情况下重复
 MAX_STEP = 20
 BATCH_SIZE = 1        #单次训练量大小
-UPDATE_PERIOD = 10  # update target network parameters目标网络随训练步数更新周期
+UPDATE_PERIOD = 5  # update target network parameters目标网络随训练步数更新周期
 decay_epsilon_STEPS = 100       #降低探索概率次数
 Lay_num_list = [25,16,8,4] #隐藏层节点设置
 
@@ -335,7 +339,6 @@ if __name__ == "__main__":
     plt.title("Total_rate")
     plt.legend(['DQN','Random'])
 
-    plt.show()
-
-
-# tensorboard --logdir=C:\Users\CP\PycharmProjects\DQN_agent_Fre\.idea\DQN\summaries
+    plt.show() 
+    
+'''
