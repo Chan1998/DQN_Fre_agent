@@ -5,6 +5,7 @@ import numpy as np
 import random
 import tensorflow.contrib.layers as layers
 import matplotlib.pyplot as plt
+import math
 #import seaborn as sns
 
 #  tensorboard --logdir=C:\Users\CP\PycharmProjects\DQN_agent_Fre\.idea\DN\summaries
@@ -13,11 +14,11 @@ import matplotlib.pyplot as plt
 #智能体变量
 MEMORY_SIZE = 5000
 EPISODES = 1            #不同用户分布情况下重复
-MAX_STEP = 5000
-BATCH_SIZE = 5       #单次训练量大小
+MAX_STEP = 50000
+BATCH_SIZE = 32       #单次训练量大小
 #UPDATE_PERIOD = 20  # update target network parameters目标网络随训练步数更新周期
 #decay_epsilon_STEPS = 100       #降低探索概率次数
-Lay_num_list = [20,32,32,20] #隐藏层节点设置
+Lay_num_list = [640,640,640] #隐藏层节点设置
 DATA_SIZE = 5000
 
 N = 20
@@ -42,12 +43,12 @@ class DeepNetwork():
     # net_frame using for creating  network
     def net_frame(self, phase, hiddens, inpt, num_actions, scope, reuse=None):
         with tf.variable_scope(scope, reuse=False):
-            # out = inpt
+            out = inpt
             out = layers.batch_norm(inpt, center=True, scale=True, is_training=phase)
             for hidden in hiddens:
-                out1 = layers.fully_connected(out, num_outputs=hidden, activation_fn=None)
-                out2 = layers.batch_norm(out1, center=True, scale=True, is_training=phase)
-                out = tf.nn.relu(out2, 'relu')
+                out = layers.fully_connected(out, num_outputs=hidden, activation_fn=None)
+                out = layers.batch_norm(out, center=True, scale=True, is_training=phase)
+                out = tf.nn.relu(out, 'relu')
             out_q = layers.fully_connected(out, num_outputs=num_actions, activation_fn=None)
             #out_action = tf.nn.softmax(out_q)
             return out_q
@@ -58,9 +59,9 @@ class DeepNetwork():
         # network
         self.inputs_state = tf.placeholder(dtype=tf.float32, shape=[None, self.state_dim], name="inputs_state")
         scope_var = "network"
-        self.output_action1 = self.net_frame(self.phase, self.lay_num_list, self.inputs_state, self.action_dim, scope_var,
+        self.output_action = self.net_frame(self.phase, self.lay_num_list, self.inputs_state, self.action_dim, scope_var,
                                       reuse=True)
-        self.output_action = tf.clip_by_value(self.output_action1, 0, self.k)
+        self.output_action = tf.clip_by_value(self.output_action, 0, self.k)
         with tf.variable_scope("loss"):
             self.inputs_action = tf.placeholder(dtype=tf.float32, shape=[None,self.action_dim], name="inputs_action")
             self.loss = tf.nn.softmax_cross_entropy_with_logits_v2(logits= self.output_action, labels= self.inputs_action)
@@ -88,9 +89,11 @@ class DeepNetwork():
         Location_dict = {}
         state = np.reshape(state,[self.state_dim])
         action = np.reshape(output, [self.action_dim])
+        for i in range(len(action)):
+            action[i] = math.floor(action[i])
+        print(action)
         for i in range(self.state_dim):
             Location_dict[i] = state[i]
-        print(Location_dict)
         DQN_dict = {}
         unoccupied_dict = {}
         num = 0
@@ -151,11 +154,32 @@ if __name__ == "__main__":
                                 action=batch_action )
             #update_iter += 1
             DN.write.add_summary(summery, step)
+            if step % 200 == 0:
+                print("进行200次训练。。。")
 
-            if step % 500 == 0:
+            if step % 1000 == 0:
                 print("进行一次测试：")
                 test_transition = random.sample(memory, 1)  # 开始随机抽取
                 test_state, test_action = map(np.array, zip(*test_transition))
                 _, num, reward_all, loss = DN.test(state=test_state,action=test_action)  # 进行测试
                 print("[after {} tring,][success_num is {}][reward_all = {} ]"
                        .format( step, num, reward_all))
+
+        print("进行实验：")
+        Location_dict = model.Location_dict_def(N, M)  # 创建用户基站对应字典,输入用户数及基站总数量
+        Greedy_dict1, num1 = model.Greedy_dict_def(N, M, K, Location_dict)  # 获取分配矩阵
+        I_dict1 = model.I_caculate(M, Location_dict,Greedy_dict1)
+        reward_all1 = model.R_caculate(Greedy_dict1, I_dict1)
+        state = list(Location_dict.values())
+        for i in range(N):
+            state[i] = float(state[i])
+        action = np.zeros(N, float)
+        for i in Greedy_dict1:
+            action[i] = Greedy_dict1[i] + 1
+        state = np.reshape(state, [1,N])
+        action = np.reshape(action, [1, N])
+        _, num2, reward_all2, loss = DN.test(state=state, action=action)  # 进行测试
+        print("[after {} tring,][success_num is {}][reward_all = {} ]"
+              .format(step, num2, reward_all2))
+        print("[For Greedy method:][success_num is {}][reward_all = {} ]"
+              .format( num1, reward_all1))
