@@ -12,14 +12,15 @@ import math
 
 
 #智能体变量
-MEMORY_SIZE = 5000
+MEMORY_SIZE = 50000
 EPISODES = 1            #不同用户分布情况下重复
-MAX_STEP = 50000
+MAX_STEP = 20000
+
 BATCH_SIZE = 32       #单次训练量大小
 #UPDATE_PERIOD = 20  # update target network parameters目标网络随训练步数更新周期
 #decay_epsilon_STEPS = 100       #降低探索概率次数
-Lay_num_list = [640,640,640] #隐藏层节点设置
-DATA_SIZE = 5000
+Lay_num_list = [640,640] #隐藏层节点设置
+DATA_SIZE = 50000
 
 N = 20
 M = 4
@@ -50,7 +51,7 @@ class DeepNetwork():
                 out = layers.batch_norm(out, center=True, scale=True, is_training=phase)
                 out = tf.nn.relu(out, 'relu')
             out_q = layers.fully_connected(out, num_outputs=num_actions, activation_fn=None)
-            #out_action = tf.nn.softmax(out_q)
+            #out_q = tf.nn.softmax(out_q)
             return out_q
 
     # create q_network & target_network
@@ -61,18 +62,23 @@ class DeepNetwork():
         scope_var = "network"
         self.output_action = self.net_frame(self.phase, self.lay_num_list, self.inputs_state, self.action_dim, scope_var,
                                       reuse=True)
-        self.output_action = tf.clip_by_value(self.output_action, 0, self.k)
+        #self.output_action = tf.multiply(self.output_action, tf.cast(tf.constant(self.k),tf.float32))
+        #self.output_action = tf.clip_by_value(self.output_action, 0, self.k)
         with tf.variable_scope("loss"):
             self.inputs_action = tf.placeholder(dtype=tf.float32, shape=[None,self.action_dim], name="inputs_action")
-            self.loss = tf.nn.softmax_cross_entropy_with_logits_v2(logits= self.output_action, labels= self.inputs_action)
-            tf.summary.histogram('loss', self.loss)
+            #self.loss = tf.nn.softmax_cross_entropy_with_logits_v2(logits= self.output_action, labels= self.inputs_action)
+            self.loss = tf.losses.mean_squared_error(self.inputs_action ,
+                                                        self.output_action,
+                                                        weights = 1.0)
+            #tf.summary.histogram('loss', self.loss)
+            tf.summary.scalar('loss', tf.reduce_mean(self.loss))
         with tf.variable_scope("train"):
             optimizer = tf.train.RMSPropOptimizer(0.001)
             self.train_op = optimizer.minimize(self.loss)
 
     def train(self, state, action):
         output= self.sess.run([self.output_action], feed_dict={self.phase:True, self.inputs_state: state })
-        output = np.reshape(output, [self.batch_size, self.action_dim])
+        output = np.reshape(output, (-1, self.action_dim))
         summery, _, _ = self.sess.run([self.merged, self.loss, self.train_op],
                                       feed_dict={ self.phase:True,self.output_action: output,
                                                   self.inputs_state: state,
@@ -81,7 +87,7 @@ class DeepNetwork():
 
     def test(self, state, action):
         output = self.sess.run([self.output_action], feed_dict={self.phase:False, self.inputs_state: state })
-        output = np.reshape(output,[1,self.action_dim])
+        output = np.reshape(output,(-1,self.action_dim))
         loss = self.sess.run([self.loss],
                              feed_dict={ self.phase:False, self.output_action: output,
                                          self.inputs_state: state,
@@ -89,6 +95,7 @@ class DeepNetwork():
         Location_dict = {}
         state = np.reshape(state,[self.state_dim])
         action = np.reshape(output, [self.action_dim])
+        print(action)
         for i in range(len(action)):
             action[i] = math.floor(action[i])
         print(action)
@@ -125,7 +132,7 @@ if __name__ == "__main__":
     Transition = collections.namedtuple("Transition", ["state", "action"])
     print("开始创建数据")
     for i in range(DATA_SIZE):
-        if i % 500 ==1:
+        if i % 5000 ==1:
             print("创建{}个数据。。。".format(i))
         Location_dict = model.Location_dict_def(N,M)      #创建用户基站对应字典,输入用户数及基站总数量
         Greedy_dict, _ = model.Greedy_dict_def(N, M, K, Location_dict)        #获取分配矩阵
@@ -167,9 +174,12 @@ if __name__ == "__main__":
 
         print("进行实验：")
         Location_dict = model.Location_dict_def(N, M)  # 创建用户基站对应字典,输入用户数及基站总数量
+        Random_dict1, num2 = model.Random_dict_def(N, K, Location_dict)
         Greedy_dict1, num1 = model.Greedy_dict_def(N, M, K, Location_dict)  # 获取分配矩阵
         I_dict1 = model.I_caculate(M, Location_dict,Greedy_dict1)
         reward_all1 = model.R_caculate(Greedy_dict1, I_dict1)
+        I_dict2 = model.I_caculate(M, Location_dict, Random_dict1)
+        reward_all2 = model.R_caculate(Random_dict1, I_dict2)
         state = list(Location_dict.values())
         for i in range(N):
             state[i] = float(state[i])
@@ -178,11 +188,13 @@ if __name__ == "__main__":
             action[i] = Greedy_dict1[i] + 1
         state = np.reshape(state, [1,N])
         action = np.reshape(action, [1, N])
-        _, num2, reward_all2, loss = DN.test(state=state, action=action)  # 进行测试
+        _, num3, reward_all3, loss = DN.test(state=state, action=action)  # 进行测试
         print("[after {} tring,][success_num is {}][reward_all = {} ]"
-              .format(step, num2, reward_all2))
+              .format(step, num3, reward_all3))
         print("[For Greedy method:][success_num is {}][reward_all = {} ]"
               .format( num1, reward_all1))
+        print("[For Random method:][success_num is {}][reward_all = {} ]"
+              .format(num2, reward_all2))
 
 
 
