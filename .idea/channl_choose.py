@@ -56,11 +56,11 @@ class DeepQNetwork():
 
         with tf.variable_scope("loss"):
             self.action = tf.placeholder(dtype=tf.int32, shape=[None], name="action")
-            with tf.device('/cpu:0'):
-                action_one_hot = tf.one_hot(self.action, self.action_dim)
+            # with tf.device('/cpu:0'):
+            #     action_one_hot = tf.one_hot(self.action, self.action_dim)
             #action_one_hot = tf.one_hot(self.action, self.action_dim)
-            q_action = tf.reduce_sum(tf.multiply(self.q_value, action_one_hot), axis=1)
-
+            # q_action = tf.reduce_sum(tf.multiply(self.q_value, action_one_hot), axis=1)
+            q_action = tf.reduce_max(self.q_value, axis=1,keepdims=False)
             self.target = tf.placeholder(dtype=tf.float32, shape=[None], name="target")
             self.loss = tf.reduce_mean(tf.square(q_action - self.target))
             tf.summary.scalar('loss', self.loss)
