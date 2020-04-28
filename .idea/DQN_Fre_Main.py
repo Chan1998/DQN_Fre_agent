@@ -14,9 +14,9 @@ import math
 #智能体变量
 MEMORY_SIZE = 50000
 EPISODES = 1            #不同用户分布情况下重复
-MAX_STEP = 20000
+MAX_STEP = 2000000
 
-BATCH_SIZE = 32       #单次训练量大小
+BATCH_SIZE = 1       #单次训练量大小
 #UPDATE_PERIOD = 20  # update target network parameters目标网络随训练步数更新周期
 #decay_epsilon_STEPS = 100       #降低探索概率次数
 Lay_num_list = [640,640] #隐藏层节点设置
@@ -73,7 +73,7 @@ class DeepNetwork():
             #tf.summary.histogram('loss', self.loss)
             tf.summary.scalar('loss', tf.reduce_mean(self.loss))
         with tf.variable_scope("train"):
-            optimizer = tf.train.RMSPropOptimizer(0.001)
+            optimizer = tf.train.GradientDescentOptimizer(0.01)
             self.train_op = optimizer.minimize(self.loss)
 
     def train(self, state, action):
@@ -161,10 +161,10 @@ if __name__ == "__main__":
                                 action=batch_action )
             #update_iter += 1
             DN.write.add_summary(summery, step)
-            if step % 200 == 0:
+            if step % 2000 == 0:
                 print("进行200次训练。。。")
 
-            if step % 1000 == 0:
+            if step % 10000 == 0:
                 print("进行一次测试：")
                 test_transition = random.sample(memory, 1)  # 开始随机抽取
                 test_state, test_action = map(np.array, zip(*test_transition))
