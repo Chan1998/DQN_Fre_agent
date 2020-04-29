@@ -14,12 +14,12 @@ import math
 #智能体变量
 MEMORY_SIZE = 50000
 EPISODES = 1            #不同用户分布情况下重复
-MAX_STEP = 2000000
+MAX_STEP = 2000
 
 BATCH_SIZE = 1       #单次训练量大小
 #UPDATE_PERIOD = 20  # update target network parameters目标网络随训练步数更新周期
 #decay_epsilon_STEPS = 100       #降低探索概率次数
-Lay_num_list = [640,640] #隐藏层节点设置
+Lay_num_list = [64,64] #隐藏层节点设置
 DATA_SIZE = 50000
 
 N = 20

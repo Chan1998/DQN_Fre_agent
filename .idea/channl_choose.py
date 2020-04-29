@@ -71,8 +71,7 @@ class DeepQNetwork():
             # training
 
     def train(self, state, reward, action, state_next):
-        q_target= self.sess.run(self.q_target,feed_dict={self.phase:1,
-                                               self.inputs_target: state_next})
+        q_target= self.sess.run(self.q_target,feed_dict={self.phase:1,self.inputs_target: state_next})
 
         #拖慢速度，不好用
         if (self.double_DQN) :        #doubleDQN需要得到Q网络中的动作所在位置最大索引
